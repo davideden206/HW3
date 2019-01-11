@@ -1,0 +1,48 @@
+Manager 1111 aaaaa
+Manager 2222 bbbbb
+Manager 3333 ccccc
+Manager 4444  dddddd
+Manager 5555 eeeeee
+ArrayList stars dsfds sdfsd sdfds sfgs
+
+Movie 1 ma 30 20.5 21.4 3.2 1 English  Action
+Movie 2 mb 34 15.5 16.4 4.2  2 Arabic Comedy
+Movie 3 mc 30 13.5 14.4 2.2 3 French Crime
+Movie 4 md 34 14.5 16.4 3.2 4 English Adventure
+Movie 5 me 30 20.5 21.4 7.2 5 Hebrew Historical
+Movie 6 mf 36 18.5 19.4 3.2 6 English Historical
+Movie 7 mg 67 22.5 23.4 6.2 7 German Horror
+Movie 8 mh 30 20.5 21.4 3.2 4 English Action
+Movie 9 mi 34 19.5 22.4 9.2 3 Hebrew Philosophical
+Movie 10 mj 30 20.5 21.4 3.2 2 French Horror
+
+News 11 na 22 20.0 21.1 Action dgfsdg
+News 22 nb 22 6.0 10.1 Action ftghjtf
+News 33 nc 22 12.1 13.0 Action liul
+		
+ArrayList Integer as 1 2 3
+ArrayList Integer as2 2 4 7
+ArrayList Integer as3 2 5 3 
+		
+		
+Series 111 aaa 40 21 22 Action days1
+Series 222 bbb 40 22 23 Animation days3
+Series 333 ccc 40 16 19 Fantasy days2
+Series 444 ddd 40 12 14 Action days1
+Series 555 eee 40 8 10 Horror days3
+Series 666 fff 40 2 3 Mystery days2
+Series 777 ggg 40 15 17 Political days1
+
+TVShow 1111 eee 30 3 4 1 DFD MJHM Action
+TVShow 2222 rrr 30 3 4 2 dfgd MJHM Action
+TVShow 3333 ttt 30 3 4 3 vcx MJHM Action
+TVShow 4444 yyy 30 3 4 4 feds MJHM Action
+TVShow 5555 uuu 30 3 4 5 sdfw MJHM Action
+TVShow 6666 iii 30 3 4 6 efs MJHM Action
+TVShow 7777 ooo 30 17 19 6 sdfe MJHM Action
+TVShow 8888 ppp 30 12 15 1 sdfcs MJHM Action
+TVShow 9999 sss 30 11 12 3 fse MJHM Action
+TVShow 1010 ddd 30 12 15 1 klu MJHM Action
+		
+		
+		
