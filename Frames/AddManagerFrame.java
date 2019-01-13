@@ -22,9 +22,11 @@ public class AddManagerFrame extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					AddManagerFrame window = new AddManagerFrame();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -47,6 +49,7 @@ public class AddManagerFrame extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 350, 225);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,8 +86,14 @@ public class AddManagerFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddPogramsFrame a = new AddPogramsFrame();
-				a.setVisible(true);
-				frame.dispose();
+				if(username.getText()=="admin") {
+					JOptionPane.showMessageDialog(null, "Succeeded");
+					a.setVisible(true);
+					frame.dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "the user it not exsist");
+				}
 				
 				
 				

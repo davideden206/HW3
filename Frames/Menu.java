@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -46,7 +47,9 @@ public class Menu extends JFrame {
 		button.setBounds(47, 22, 112, 23);
 		contentPane.add(button);
 		
+
 		
+		    
 		JButton button_1 = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA");
 		button_1.setBounds(169, 22, 106, 23);
 		contentPane.add(button_1);
