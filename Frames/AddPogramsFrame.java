@@ -1,21 +1,20 @@
 package Frames;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.time.DayOfWeek;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import src.Languages;
 
 public class AddPogramsFrame extends JFrame {
 
@@ -173,7 +172,8 @@ public class AddPogramsFrame extends JFrame {
 					lable2.setVisible(true);
 					lable3.setVisible(true);
 					lable4.setVisible(true);
-					comboBox_3 = new JComboBox<>();
+					
+					comboBox_3 = new JComboBox<>(Languages.values());
 					comboBox_3.setBounds(73, 194, 102, 20);
 					contentPane.add(comboBox_3);
 				}

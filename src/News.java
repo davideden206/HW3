@@ -1,3 +1,4 @@
+package src;
 public class News extends Series {
 	
 	 private String broadcaster;

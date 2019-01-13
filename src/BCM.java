@@ -1,3 +1,4 @@
+package src;
 
 
 import java.io.BufferedReader;
@@ -15,7 +16,7 @@ public class BCM {
 		
 		Schedule sch = new Schedule();
 		Schedule newsch = new Schedule();
-		
+	
 		// read programs from txt file
 		filein.openFile();
 		filein.readRecords();

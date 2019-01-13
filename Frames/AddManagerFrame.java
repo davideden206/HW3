@@ -90,6 +90,7 @@ public class AddManagerFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					a.setVisible(true);
 					frame.dispose();
+					
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "the user it not exsist");
