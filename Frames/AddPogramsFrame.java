@@ -37,6 +37,7 @@ public class AddPogramsFrame extends JFrame {
 	private JLabel lable2;
 	private JLabel lable3;
 	private JLabel lable4;
+	private JComboBox comboBox_1, comboBox_2;
 
 	/**
 	 * Launch the application.
@@ -240,13 +241,14 @@ public class AddPogramsFrame extends JFrame {
 		lable4.setBounds(177, 197, 102, 17);
 		contentPane.add(lable4);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		 comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(73, 110, 102, 20);
 		contentPane.add(comboBox_1);
 		
-		JComboBox comboBox_2 = new JComboBox();
+		 comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(73, 138, 102, 20);
 		contentPane.add(comboBox_2);
+		
 		item4.setVisible(false);
 		lable4.setVisible(false);
 		
@@ -261,5 +263,7 @@ public class AddPogramsFrame extends JFrame {
 		lable3.setVisible(false);
 		item4.setVisible(false);
 		lable4.setVisible(false);
+		comboBox_1.setVisible(false);
+		comboBox_2.setVisible(false);
 	}
 }
