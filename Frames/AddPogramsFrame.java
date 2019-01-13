@@ -163,9 +163,7 @@ public class AddPogramsFrame extends JFrame {
 				}
 				else if(s=="Movie") {
 					clear();
-					comboBox_2 = new JComboBox<>(DayOfWeek.values());
-					comboBox_2.setBounds(73, 138, 102, 20);
-					contentPane.add(comboBox_2);
+					
 					item1.setVisible(true);
 					lable1.setText("IMDB");
 					lable2.setText("day scheduled");
@@ -177,14 +175,18 @@ public class AddPogramsFrame extends JFrame {
 					lable2.setVisible(true);
 					lable3.setVisible(true);
 					lable4.setVisible(true);
-
+					
+					comboBox_2 = new JComboBox<>(DayOfWeek.values());
+					comboBox_2.setBounds(73, 138, 102, 20);
+					contentPane.add(comboBox_2);
 					comboBox_3 = new JComboBox<>(Languages.values());
 					comboBox_3.setBounds(73, 194, 102, 20);
 					contentPane.add(comboBox_3);
 
-					comboBox_4 = new JComboBox<>(Languages.values());
+					comboBox_4 = new JComboBox<>(Genres.values());
 					comboBox_4.setBounds(73, 194, 102, 20);
 					contentPane.add(comboBox_4);
+					
 					lable5.setVisible(true);
 
 				}
@@ -240,6 +242,7 @@ public class AddPogramsFrame extends JFrame {
 		item4.setColumns(10);
 		item4.setBounds(89, 194, 86, 20);
 		contentPane.add(item4);
+		item4.setVisible(false);
 
 		lable1 = new JLabel("");
 		lable1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -263,11 +266,13 @@ public class AddPogramsFrame extends JFrame {
 		lable4.setHorizontalAlignment(SwingConstants.CENTER);
 		lable4.setBounds(177, 197, 102, 17);
 		contentPane.add(lable4);
+		lable4.setVisible(false);
 
 		lable5 = new JLabel("");
 		lable5.setHorizontalAlignment(SwingConstants.CENTER);
 		lable5.setBounds(177, 227, 102, 17);
 		contentPane.add(lable5);
+		lable5.setVisible(false);
 
 		comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(73, 110, 102, 20);
@@ -287,12 +292,8 @@ public class AddPogramsFrame extends JFrame {
 		comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(73, 225, 102, 20);
 		contentPane.add(comboBox_4);
-
-
 		comboBox_4.setVisible(false);
 
-		item4.setVisible(false);
-		lable4.setVisible(false);
 
 	}
 
