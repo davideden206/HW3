@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.DayOfWeek;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +38,7 @@ public class AddPogramsFrame extends JFrame {
 	private JLabel lable2;
 	private JLabel lable3;
 	private JLabel lable4;
-	private JComboBox comboBox_1, comboBox_2;
+	private JComboBox comboBox_1, comboBox_2,comboBox_3;
 
 	/**
 	 * Launch the application.
@@ -140,7 +141,11 @@ public class AddPogramsFrame extends JFrame {
 				String s = e.getItem().toString();
 				if(s=="TVshow") {
 					clear();
-					item1.setVisible(true);
+					comboBox_1 = new JComboBox<>(DayOfWeek.values());
+					comboBox_1.setBounds(73, 110, 102, 20);
+					contentPane.add(comboBox_1);
+					comboBox_1.setVisible(true);
+			
 					lable1.setText("day scheduled");
 					item2.setVisible(true);
 					lable2.setText("guest");
@@ -154,23 +159,30 @@ public class AddPogramsFrame extends JFrame {
 				}
 				else if(s=="Movie") {
 					clear();
+					comboBox_2 = new JComboBox<>(DayOfWeek.values());
+					comboBox_2.setBounds(73, 138, 102, 20);
+					contentPane.add(comboBox_2);
 					item1.setVisible(true);
 					lable1.setText("IMDB");
-					item2.setVisible(true);
 					lable2.setText("day scheduled");
 					item3.setVisible(true);
 					lable3.setText("stars");
-					item4.setVisible(true);
+				
 					lable4.setText("subtitle lenguges");
 					lable1.setVisible(true);
 					lable2.setVisible(true);
 					lable3.setVisible(true);
 					lable4.setVisible(true);
-
+					comboBox_3 = new JComboBox<>();
+					comboBox_3.setBounds(73, 194, 102, 20);
+					contentPane.add(comboBox_3);
 				}
 				else if(s=="Series") {
 					clear();
-					item1.setVisible(true);
+					comboBox_1 = new JComboBox<>(DayOfWeek.values());
+					comboBox_1.setBounds(73, 110, 102, 20);
+					contentPane.add(comboBox_1);
+					comboBox_1.setVisible(true);
 					lable1.setVisible(true);
 					lable1.setText("day scheduled");
 
@@ -244,10 +256,16 @@ public class AddPogramsFrame extends JFrame {
 		 comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(73, 110, 102, 20);
 		contentPane.add(comboBox_1);
+		comboBox_1.setVisible(false);
 		
 		 comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(73, 138, 102, 20);
 		contentPane.add(comboBox_2);
+		comboBox_2.setVisible(false);
+		 comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(73, 194, 102, 20);
+		contentPane.add(comboBox_3);
+		comboBox_3.setVisible(false);
 		
 		item4.setVisible(false);
 		lable4.setVisible(false);

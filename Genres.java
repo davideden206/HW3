@@ -1,4 +1,4 @@
-import java.io.Serializable;
+
 
 public enum Genres{
 	Comedy, Action, Adventure, Crime,
