@@ -86,7 +86,7 @@ public class AddManagerFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddPogramsFrame a = new AddPogramsFrame();
-				if(username.getText()=="admin") {
+				if(username.getText().equals("admin")) {
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					a.setVisible(true);
 					frame.dispose();
