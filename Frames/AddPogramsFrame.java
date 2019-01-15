@@ -2,20 +2,37 @@ package Frames;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
+import src.BCM;
 import src.Genres;
 import src.Languages;
+import src.Manager;
+import src.Movie;
+import src.TVShow;
+import javax.swing.JButton;
 
 public class AddPogramsFrame extends JFrame {
 
@@ -39,7 +56,9 @@ public class AddPogramsFrame extends JFrame {
 	private JLabel lable3;
 	private JLabel lable4;
 	private JLabel lable5;
-	private JComboBox comboBox_1, comboBox_2,comboBox_3,comboBox_4;
+	private JButton btnAdd;
+	private JComboBox comboBox_1, comboBox_2,comboBox_3,comboBox4,comboBoxType;
+	private Manager m;
 
 	/**
 	 * Launch the application.
@@ -48,7 +67,7 @@ public class AddPogramsFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddPogramsFrame frame = new AddPogramsFrame();
+					AddPogramsFrame frame = new AddPogramsFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,9 +79,10 @@ public class AddPogramsFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddPogramsFrame() {
+	public AddPogramsFrame(Manager m) {
+		this.m = m;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 482, 312);
+		setBounds(100, 100, 484, 355);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -131,11 +151,17 @@ public class AddPogramsFrame extends JFrame {
 		lblEndHour.setBounds(376, 228, 77, 17);
 		contentPane.add(lblEndHour);
 		String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};
-		JComboBox comboBox = new JComboBox(typeOfPrograms);
-		comboBox.setBounds(224, 64, 151, 24);
-		contentPane.add(comboBox);
-		comboBox.getAlignmentX();
-		comboBox.addItemListener(new ItemListener() {
+		 comboBoxType = new JComboBox(typeOfPrograms);
+		comboBoxType.setBounds(224, 64, 151, 24);
+		contentPane.add(comboBoxType);
+		comboBoxType.getAlignmentX();
+		
+		
+		
+			
+			
+		
+		comboBoxType.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -152,14 +178,12 @@ public class AddPogramsFrame extends JFrame {
 					lable2.setText("guest");
 					item3.setVisible(true);
 					lable3.setText("host");
-					lable4.setVisible(true);
-					lable4.setText("genres");
+					
+					
 					lable1.setVisible(true);
 					lable2.setVisible(true);
 					lable3.setVisible(true);
-					comboBox_3 = new JComboBox<>(Genres.values());
-					comboBox_3.setBounds(73, 194, 102, 20);
-					contentPane.add(comboBox_3);
+					
 				}
 				else if(s=="Movie") {
 					clear();
@@ -183,11 +207,6 @@ public class AddPogramsFrame extends JFrame {
 					comboBox_3.setBounds(73, 194, 102, 20);
 					contentPane.add(comboBox_3);
 
-					comboBox_4 = new JComboBox<>(Genres.values());
-					comboBox_4.setBounds(73, 194, 102, 20);
-					contentPane.add(comboBox_4);
-					
-					lable5.setVisible(true);
 
 				}
 				else if(s=="Series") {
@@ -268,11 +287,11 @@ public class AddPogramsFrame extends JFrame {
 		contentPane.add(lable4);
 		lable4.setVisible(false);
 
-		lable5 = new JLabel("");
+		lable5 = new JLabel("genres");
 		lable5.setHorizontalAlignment(SwingConstants.CENTER);
-		lable5.setBounds(177, 227, 102, 17);
+		lable5.setBounds(376, 253, 102, 17);
 		contentPane.add(lable5);
-		lable5.setVisible(false);
+		
 
 		comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(73, 110, 102, 20);
@@ -288,12 +307,23 @@ public class AddPogramsFrame extends JFrame {
 		comboBox_3.setBounds(73, 194, 102, 20);
 		contentPane.add(comboBox_3);
 		comboBox_3.setVisible(false);
-
-		comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(73, 225, 102, 20);
-		contentPane.add(comboBox_4);
-		comboBox_4.setVisible(false);
-
+		
+		 comboBox4 = new JComboBox(Genres.values());
+		comboBox4.setBounds(289, 250, 86, 20);
+		contentPane.add(comboBox4);
+		
+		 btnAdd = new JButton("add");
+		btnAdd.setBounds(200, 290, 89, 23);
+		contentPane.add(btnAdd);
+		
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addProgram();
+				
+			}
+		});
 
 	}
 
@@ -306,10 +336,48 @@ public class AddPogramsFrame extends JFrame {
 		lable3.setVisible(false);
 		item4.setVisible(false);
 		lable4.setVisible(false);
-		lable5.setVisible(false);
 		comboBox_1.setVisible(false);
 		comboBox_2.setVisible(false);
 		comboBox_3.setVisible(false);
-		comboBox_4.setVisible(false);
 	}
-}
+	
+	public void addProgram() {
+		int pid =Integer.valueOf(programId.getText());
+		String pname = programName.getText().toString();
+		int duration = Integer.valueOf(programDuration.getText());
+		double startHour = Double.valueOf(programStartHour.getText());
+		double endHour = Double.valueOf(programEndHour.getText());
+		Genres pgenres  =(Genres) comboBoxType.getSelectedItem();
+		 
+		
+		if (comboBoxType.getSelectedItem().toString().equals("TVshow")) {
+			int day= comboBox_1.getSelectedIndex();
+			String guest= item2.getText();
+			String host= item3.getText();
+			
+			TVShow tv = new TVShow(pid, pname, duration, startHour, endHour, day, guest, host,pgenres );
+			try {
+				m.addProgramByManger(tv, BCM.sch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+			
+		}else {
+			JOptionPane.showMessageDialog(null, "TVShow not add ");
+		}
+		
+		if(comboBoxType.getSelectedItem().toString().equals("Movie")) {
+			double IMDB = Double.parseDouble(item1.getText());
+			int daySchasuled = comboBox_2.getSelectedIndex();
+			String stars = item2.getText();
+			Languages subtitleLenguage = (Languages)comboBox_3.getSelectedItem();
+			ArrayList<String> starss = new ArrayList<>();
+			starss.add(stars);
+			Movie mo = new Movie(pid, pname, duration, startHour, endHour, IMDB, daySchasuled, starss, subtitleLenguage, Genres.valueOf("Action"));
+		}
+		
+		
+	}
+}//String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};

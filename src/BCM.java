@@ -1,6 +1,7 @@
 package src;
 
 
+import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,17 +11,23 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.synth.SynthStyle;
 
+import Frames.AddManagerFrame;
 
-public class BCM {
+
+public class BCM  {
+	
+	public static ArrayList<Manager> managers = new ArrayList<>();
+	public static Schedule sch = new Schedule();
+	public static Schedule newsch = new Schedule();
+	
 	public static void main(String[] args) throws Exception {
 		
-		Schedule sch = new Schedule();
-		Schedule newsch = new Schedule();
-	
 		// read programs from txt file
 		filein.openFile();
 		filein.readRecords();
 		filein.closeFile();
+		
+		managers = filein.manager;
 		
 		
 		// add programs to Schedule
@@ -53,6 +60,20 @@ public class BCM {
 		newsch.PrintPerCost();
 		
 	// end mane	
+		
+		
+
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+
+						AddManagerFrame window = new AddManagerFrame();
+						window.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 	}
 	
 	// Mutates for add program
@@ -106,6 +127,7 @@ public class BCM {
 			}
 		}
 	}
+	
 	
 	
 	
