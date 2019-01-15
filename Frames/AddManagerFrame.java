@@ -78,7 +78,7 @@ public class AddManagerFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddPogramsFrame a = new AddPogramsFrame(getManager(Integer.valueOf(password.getText())) ,null);
-
+				
 				if(checkUsername(Integer.valueOf(password.getText()), username.getText())) {
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					a.setVisible(true);
