@@ -16,6 +16,8 @@ import Frames.AddManagerFrame;
 
 public class BCM  {
 	
+	/// yishai the king
+	
 	public static ArrayList<Manager> managers = new ArrayList<>();
 	public static Schedule sch = new Schedule();
 	public static Schedule newsch = new Schedule();
