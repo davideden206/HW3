@@ -2,6 +2,7 @@ package Frames;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -32,6 +33,7 @@ import src.Languages;
 import src.Manager;
 import src.Movie;
 import src.News;
+import src.Program;
 import src.Series;
 import src.TVShow;
 
@@ -40,6 +42,7 @@ import javax.swing.JButton;
 
 public class AddPogramsFrame extends JFrame {
 
+	//public AddPogramsFrame frame;
 	private JPanel contentPane;
 	private JTextField programId;
 	private JTextField programName;
@@ -63,6 +66,7 @@ public class AddPogramsFrame extends JFrame {
 	private JButton btnAdd;
 	private JComboBox comboBox_1, comboBox_2,comboBox_3,comboBox4,comboBoxType;
 	private Manager m;
+	private Program p;
 
 	/**
 	 * Launch the application.
@@ -71,7 +75,7 @@ public class AddPogramsFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddPogramsFrame frame = new AddPogramsFrame(null);
+					AddPogramsFrame frame = new AddPogramsFrame(null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -83,8 +87,9 @@ public class AddPogramsFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddPogramsFrame(Manager m) {
+	public AddPogramsFrame(Manager m, Program p) {
 		this.m = m;
+		this.p = p;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 484, 355);
 		contentPane = new JPanel();
@@ -103,9 +108,12 @@ public class AddPogramsFrame extends JFrame {
 		contentPane.add(label_1);
 
 		programId = new JTextField();
+		
 		programId.setBounds(289, 110, 86, 20);
 		contentPane.add(programId);
 		programId.setColumns(10);
+		if(p!=null)
+		programId.setText(String.valueOf(p.getId()));
 
 
 
@@ -113,22 +121,30 @@ public class AddPogramsFrame extends JFrame {
 		programName.setBounds(289, 138, 86, 20);
 		contentPane.add(programName);
 		programName.setColumns(10);
+		if(p!=null)
+		programName.setText(p.getName());
 
 
 		programDuration = new JTextField();
 		programDuration.setColumns(10);
 		programDuration.setBounds(289, 166, 86, 20);
 		contentPane.add(programDuration);
+		if(p!=null)
+		programDuration.setText(String.valueOf(p.getDuration()));
 
 		programStartHour = new JTextField();
 		programStartHour.setColumns(10);
 		programStartHour.setBounds(289, 194, 86, 20);
 		contentPane.add(programStartHour);
+		if(p!=null)
+		programStartHour.setText(String.valueOf(p.getStartHour()));
 
 		programEndHour = new JTextField();
 		programEndHour.setColumns(10);
 		programEndHour.setBounds(289, 225, 86, 20);
 		contentPane.add(programEndHour);
+		if(p!=null)
+		programEndHour.setText(String.valueOf(p.getEndHour()));
 
 		label_2 = new JLabel("id");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -159,7 +175,10 @@ public class AddPogramsFrame extends JFrame {
 		comboBoxType.setBounds(224, 64, 151, 24);
 		contentPane.add(comboBoxType);
 		comboBoxType.getAlignmentX();
-		
+		if(p!=null) {
+		int po = getPosion(typeOfPrograms,p.getGeners().toString() );
+		comboBoxType.setSelectedIndex(po);;
+		}
 		
 		
 			
@@ -362,6 +381,7 @@ public class AddPogramsFrame extends JFrame {
 			TVShow tv = new TVShow(pid, pname, duration, startHour, endHour, day, guest, host,Genres.valueOf(pgenres));
 			try {
 				m.addProgramByManger(tv, BCM.sch);
+				contentPane.setVisible(false);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -418,5 +438,13 @@ public class AddPogramsFrame extends JFrame {
 			JOptionPane.showMessageDialog(null, "TVShow not add ");
 		}
 		
+	}
+	public int getPosion(String [] list,String value) {
+		int cont = 0;
+		for (String l :list) {
+			if(l==value) return cont;
+			cont++;
+		}
+		return -2;
 	}
 }
