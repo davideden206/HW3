@@ -31,7 +31,11 @@ import src.Genres;
 import src.Languages;
 import src.Manager;
 import src.Movie;
+import src.News;
+import src.Series;
 import src.TVShow;
+
+import javax.sql.rowset.serial.SerialArray;
 import javax.swing.JButton;
 
 public class AddPogramsFrame extends JFrame {
@@ -347,7 +351,7 @@ public class AddPogramsFrame extends JFrame {
 		int duration = Integer.valueOf(programDuration.getText());
 		double startHour = Double.valueOf(programStartHour.getText());
 		double endHour = Double.valueOf(programEndHour.getText());
-		Genres pgenres  =(Genres) comboBoxType.getSelectedItem();
+		String pgenres  =comboBox4.getSelectedItem().toString();
 		 
 		
 		if (comboBoxType.getSelectedItem().toString().equals("TVshow")) {
@@ -355,7 +359,7 @@ public class AddPogramsFrame extends JFrame {
 			String guest= item2.getText();
 			String host= item3.getText();
 			
-			TVShow tv = new TVShow(pid, pname, duration, startHour, endHour, day, guest, host,pgenres );
+			TVShow tv = new TVShow(pid, pname, duration, startHour, endHour, day, guest, host,Genres.valueOf(pgenres));
 			try {
 				m.addProgramByManger(tv, BCM.sch);
 			} catch (Exception e) {
@@ -372,12 +376,47 @@ public class AddPogramsFrame extends JFrame {
 			double IMDB = Double.parseDouble(item1.getText());
 			int daySchasuled = comboBox_2.getSelectedIndex();
 			String stars = item2.getText();
-			Languages subtitleLenguage = (Languages)comboBox_3.getSelectedItem();
+			String subtitleLenguage = comboBox_3.getSelectedItem().toString();
 			ArrayList<String> starss = new ArrayList<>();
 			starss.add(stars);
-			Movie mo = new Movie(pid, pname, duration, startHour, endHour, IMDB, daySchasuled, starss, subtitleLenguage, Genres.valueOf("Action"));
+			Movie mo = new Movie(pid, pname, duration, startHour, endHour, IMDB, daySchasuled, starss, Languages.valueOf(subtitleLenguage), Genres.valueOf(pgenres));
+		
+		try {
+			m.addProgramByManger(mo, BCM.sch);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+		}else {
+			JOptionPane.showMessageDialog(null, "TVShow not add ");
 		}
 		
+		if (comboBoxType.getSelectedItem().toString().equals("Series")) {
+			int daySchasuled = comboBox_1.getSelectedIndex();
+			ArrayList<Integer>daySchasuledList = new ArrayList<>();
+			daySchasuledList.add(daySchasuled);
+			Series ss  = new Series(pid, pname, duration, startHour, endHour, Genres.valueOf(pgenres),daySchasuledList);
+			
+			try {
+				m.addProgramByManger(ss, BCM.sch);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+		}else {
+			JOptionPane.showMessageDialog(null, "TVShow not add ");
+		}
+		
+		if (comboBoxType.getSelectedItem().toString().equals("News")) {
+			String broadcaster = item1.getText();
+			News n = new News(pid, pname, duration, startHour, endHour, Genres.valueOf(pgenres), broadcaster);
+			try {
+				m.addProgramByManger(n, BCM.sch);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+		}else {
+			JOptionPane.showMessageDialog(null, "TVShow not add ");
+		}
 		
 	}
-}//String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};
+}
