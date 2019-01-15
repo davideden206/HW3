@@ -16,7 +16,7 @@ public class BCM {
 		
 		Schedule sch = new Schedule();
 		Schedule newsch = new Schedule();
-	
+	//dhfguhdjgbjhfjkdshfgjkdshgjkdshjgkdsj
 		// read programs from txt file
 		filein.openFile();
 		filein.readRecords();
