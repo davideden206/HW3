@@ -49,6 +49,7 @@ public class Menu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// נשאר להוסיף ליסינר ליציאה ןעידכון הקובץ וליסינר להוספת מנהל חדש
 		JButton btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
 		btnAddManager.setBounds(242, 104, 178, 25);
 		btnAddManager.addActionListener(new ActionListener() {
