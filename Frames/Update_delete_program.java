@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTree;
 import javax.swing.ListModel;
@@ -91,7 +92,7 @@ public class Update_delete_program extends JFrame {
 		label_1.setBounds(166, 54, 34, 14);
 		panel.add(label_1);
 		
-		JList<String> list2 = new JList<String>();
+		JList<String> list2 = new JList<String>(id);
 		list2.setVisibleRowCount(5);
 		list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -103,9 +104,9 @@ public class Update_delete_program extends JFrame {
 		scrollPane_1.setBounds(160, 74, 53, 168);
 		panel.add(scrollPane_1);
 		
-		JButton button = new JButton("\u05E2\u05D3\u05DB\u05DF");
-		button.setBounds(49, 219, 89, 23);
-		panel.add(button);
+		JButton btnUpdate = new JButton("\u05E2\u05D3\u05DB\u05DF");
+		btnUpdate.setBounds(49, 219, 89, 23);
+		panel.add(btnUpdate);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("delete program", null, panel_1, null);
@@ -113,7 +114,7 @@ public class Update_delete_program extends JFrame {
 		
 		
 		
-		JList<String> list = new JList<String>();
+		JList<String> list = new JList<String>(id);
 		list.setVisibleRowCount(5);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -142,7 +143,22 @@ public class Update_delete_program extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				String id = list.getSelectedValue().toString();
+				BCM.sch.deleteProgram(id);
+				Update_delete_program u = new Update_delete_program();
+				u.dispose();
+				JOptionPane.showMessageDialog(null, "the program was deleted");
+				u.setVisible(true);
+			}
+		});
+		
+		btnUpdate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = list.getSelectedValue().toString();
+				AddPogramsFrame ap = new AddPogramsFrame(null, BCM.sch.getProgram(id));
+				BCM.sch.deleteProgram(id);
 				
 			}
 		});

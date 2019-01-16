@@ -101,8 +101,27 @@ public class Schedule {
 		 return all;
 	 }
 	 
-	 public void deleteProgram(Program p) {
-		 
+	 public void deleteProgram(String p) {
+		 for(ArrayList<Program> listp :this.WeeklySchedule) {
+			 for (int i = 0; i < listp.size(); i++) {
+				if(p.equals(String.valueOf(listp.get(i).getId()))) {
+					listp.remove(i);
+				}
+			}
+		 }
+	 }
+	 
+	 public Program getProgram(String idP) {
+		 Program p = null;
+		 for(ArrayList<Program> listp :this.WeeklySchedule) {
+			 for (int i = 0; i < listp.size(); i++) {
+				if(idP.equals(String.valueOf(listp.get(i).getId()))) {
+					 p = listp.get(i);
+					return p;
+				}
+			}
+		 }
+		 return p;
 	 }
 	 
 }
