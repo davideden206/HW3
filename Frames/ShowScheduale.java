@@ -6,25 +6,24 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import src.BCM;
-import src.DaysOfTheWeek;
 import src.Program;
+import java.awt.Font;
 
-import javax.swing.JLabel;
-import javax.swing.JTable;
-
-public class ShowSchedualeByQuery extends JFrame {
-
-	private JPanel contentPane;
+public class ShowScheduale extends JFrame {
 	private JTable table;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -33,7 +32,7 @@ public class ShowSchedualeByQuery extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShowSchedualeByQuery frame = new ShowSchedualeByQuery();
+					ShowScheduale frame = new ShowScheduale();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +44,7 @@ public class ShowSchedualeByQuery extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowSchedualeByQuery() {
+	public ShowScheduale() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,13 +52,13 @@ public class ShowSchedualeByQuery extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("\u05D1\u05D7\u05E8 \u05D9\u05D5\u05DD \u05DC\u05D4\u05E6\u05D2\u05D4");
-		label.setBounds(325, 11, 87, 14);
+		
+		JLabel label = new JLabel("\u05DB\u05DC \u05D4\u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05D1\u05E9\u05D1\u05D5\u05E2");
+		label.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label.setBounds(148, 11, 191, 21);
 		contentPane.add(label);
-		JComboBox choseDay = new JComboBox<>(DaysOfTheWeek.values());//
-		choseDay.setSelectedIndex(0);
-		choseDay.setBounds(213, 8, 102, 20);
-		contentPane.add(choseDay);
+		
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 48, 422, 210);
@@ -70,8 +69,8 @@ public class ShowSchedualeByQuery extends JFrame {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
-		Object[][] o = new Object[20][8];
-		for(int k = 0;k<20;k++) {
+		Object[][] o = new Object[50][8];
+		for(int k = 0;k<50;k++) {
 			for(int j = 0;j<8;j++) {
 				o[k][j]=null;
 			}
@@ -87,26 +86,31 @@ public class ShowSchedualeByQuery extends JFrame {
 		table.setModel(model);
 		
 		
-		choseDay.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int i =0;
+		
+				
 				DefaultTableModel tmodel =  new DefaultTableModel(o,
 						new String[] {
 								"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 						}
 						);
-			
-				for (Program program : BCM.sch.getProgramsByDay(choseDay.getSelectedIndex())) {
-					tmodel.setValueAt(program.getName(),i++, choseDay.getSelectedIndex());
-				}
+		int y=0;
+		
+		while(y<7) {
+			int i =0;
+			for (Program program : BCM.sch.getProgramsByDay(y)) {
+				tmodel.setValueAt(program.getName(),i++, y);
+			}
+			y++;
+		}	
 				table.setModel(tmodel);
 
 			}
-		});
+			
+			
+	
 		
 		
 
-	}
+	
+
 }

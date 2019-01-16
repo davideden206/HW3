@@ -74,9 +74,9 @@ public class Menu extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ShowSchedualeByQuery show = new ShowSchedualeByQuery();
-				show.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				show.setVisible(true);
+				ShowScheduale s = new ShowScheduale();
+				s.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				s.setVisible(true);
 				
 			}
 		});

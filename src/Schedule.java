@@ -124,4 +124,22 @@ public class Schedule {
 		 return p;
 	 }
 	 
+	 public ArrayList<Program> getProgramsByDay(int day){
+		 ArrayList<Program> listP = new ArrayList<>();
+		 for (int i = 0; i <8; i++) {
+			 if(day==i) {
+				 for(Program p :this.WeeklySchedule[i]) {
+					 listP.add(p);
+				 }
+			 }
+		 }
+		 return listP;
+	 }
+
+	public ArrayList<Program>[] getWeeklySchedule() {
+		return WeeklySchedule;
+	}
+
+	 
+	 
 }
