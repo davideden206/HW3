@@ -101,4 +101,8 @@ public class Schedule {
 		 return all;
 	 }
 	 
+	 public void deleteProgram(Program p) {
+		 
+	 }
+	 
 }
