@@ -156,10 +156,12 @@ public class Update_delete_program extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String id = list.getSelectedValue().toString();
-				AddPogramsFrame ap = new AddPogramsFrame(null, BCM.sch.getProgram(id));
+				String id = list2.getSelectedValue().toString();
+				AddPogramsFrame ap = new AddPogramsFrame(Menu.maneger, BCM.sch.getProgram(id));
 				BCM.sch.deleteProgram(id);
-				
+				ap.setVisible(true);
+				Update_delete_program u = new Update_delete_program();
+				u.dispose();
 			}
 		});
 		
