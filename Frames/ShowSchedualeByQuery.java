@@ -58,7 +58,7 @@ public class ShowSchedualeByQuery extends JFrame {
 	public ShowSchedualeByQuery() {
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 437, 288);
+		setBounds(100, 100, 186, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,7 +69,7 @@ public class ShowSchedualeByQuery extends JFrame {
 		contentPane.add(label);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 432, 258);
+		tabbedPane.setBounds(0, 0, 180, 258);
 		contentPane.add(tabbedPane);
 		
 		JPanel panel = new JPanel();
@@ -79,8 +79,12 @@ public class ShowSchedualeByQuery extends JFrame {
 		tabbedPane.addTab("delete program", null, panel_1, null);
 		panel_1.setLayout(null);
 		
-		String [] id = {};
 		
+		ArrayList<Program> listProgram = BCM.sch.ScheduletoArry();
+		String [] id = new String[listProgram.size()];
+		for(int i =0;i<listProgram.size();i++) {
+			id[i] =String.valueOf(listProgram.get(i).getId());
+		}
 		JList<String> list = new JList<String>(id);
 		list.setVisibleRowCount(5);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -92,17 +96,19 @@ public class ShowSchedualeByQuery extends JFrame {
 		JLabel lblId = new JLabel("id");
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
-		lblId.setBounds(370, 32, 34, 14);
+		lblId.setBounds(118, 32, 34, 14);
 		panel_1.add(lblId);
 		
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.add(list);
-		scrollPane.setBounds(364, 52, 53, 168);
+		scrollPane.setBounds(112, 52, 53, 168);
 		panel_1.add(scrollPane);
+		
+		JButton btnNewButton = new JButton("\u05DE\u05D7\u05E7");
+		btnNewButton.setBounds(10, 197, 89, 23);
+		panel_1.add(btnNewButton);
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)list.getCellRenderer();  
 		renderer.setHorizontalAlignment(JLabel.CENTER);  
 		
 	}
-
-	
 }
