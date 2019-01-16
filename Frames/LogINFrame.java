@@ -15,7 +15,7 @@ import src.Manager;
 
 import java.awt.Font;
 
-public class AddManagerFrame extends JFrame {
+public class LogINFrame extends JFrame {
 
 	public JFrame frame;
 	private JTextField username;
@@ -25,13 +25,13 @@ public class AddManagerFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
+
 
 
 	/**
 	 * Create the application.
 	 */
-	public AddManagerFrame() {
+	public LogINFrame() {
 
 		initialize();
 
@@ -77,14 +77,23 @@ public class AddManagerFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				if((username.getText().equals("admin")||username.equals("ADMIN"))
+						&&(password.getText().equals("admin")||password.getText().equals("ADMIN"))){
+					Menu m = new Menu(null);
+					JOptionPane.showMessageDialog(null, "Succeeded");
+					m.setVisible(true);
+					frame.dispose();
+				}
 				
-				Menu m = new Menu(getManager(Integer.valueOf(password.getText())));
-				if(checkUsername(Integer.valueOf(password.getText()), username.getText())) {
+				 if(checkUsername(Integer.valueOf(password.getText()), username.getText())) {
+					Menu m = new Menu(getManager(Integer.valueOf(password.getText())));
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					m.setVisible(true);
 					frame.dispose();
 
 				}
+
 				else {
 					JOptionPane.showMessageDialog(null, "the user it not exsist");
 				}

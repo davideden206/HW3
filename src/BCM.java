@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.synth.SynthStyle;
 
-import Frames.AddManagerFrame;
+import Frames.LogINFrame;
 
 
 public class BCM  {
@@ -69,7 +69,7 @@ public class BCM  {
 				public void run() {
 					try {
 
-						AddManagerFrame window = new AddManagerFrame();
+						LogINFrame window = new LogINFrame();
 						window.frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
