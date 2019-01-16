@@ -46,6 +46,14 @@ public class FileOut {
 	         } 
    
 	      }
+	      for (Manager m : BCM.managers) {
+	    	  try {
+				output.writeObject(m);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      }
 	   } 
 
 	   // close file and terminate application 

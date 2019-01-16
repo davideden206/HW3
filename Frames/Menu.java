@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame {
-	private Manager maneger;
+	static Manager maneger;
 	private JPanel contentPane;
 
 	/**
@@ -49,6 +49,22 @@ public class Menu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
+		btnAddManager.setBounds(242, 104, 178, 25);
+		btnAddManager.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		contentPane.add(btnAddManager);
+		
+		JButton btnSaveExit = new JButton("\u05E9\u05DE\u05D5\u05E8 \u05D5\u05E6\u05D0");
+		btnSaveExit.setBounds(12, 202, 115, 38);
+		contentPane.add(btnSaveExit);
+		
 		JButton disply_schduale = new JButton("\u05D4\u05E6\u05D2\u05EA \u05DC\u05D5\u05D6");
 		disply_schduale.setBounds(242, 32, 178, 23);
 		contentPane.add(disply_schduale);
@@ -67,6 +83,8 @@ public class Menu extends JFrame {
 		JButton displayByDay = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA \u05DC\u05E4\u05D9 \u05D9\u05D5\u05DD");
 		displayByDay.setBounds(242, 68, 178, 23);
 		contentPane.add(displayByDay);
+		
+		
 		
 		displayByDay.addActionListener(new ActionListener() {
 			
