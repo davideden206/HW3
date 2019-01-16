@@ -144,11 +144,19 @@ public class Update_delete_program extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String id = list.getSelectedValue().toString();
-				BCM.sch.deleteProgram(id);
-				Update_delete_program u = new Update_delete_program();
-				u.dispose();
-				JOptionPane.showMessageDialog(null, "the program was deleted");
-				u.setVisible(true);
+				int n = JOptionPane.showConfirmDialog(null, BCM.sch.getProgram(id).toString()+"\n you are shure that you"
+						+ " want to delete this program","this is the program that yo want to deleted",JOptionPane.YES_NO_OPTION);
+				if(n==0) {
+					BCM.sch.deleteProgram(id);
+					Update_delete_program u = new Update_delete_program();
+					u.dispose();
+					JOptionPane.showMessageDialog(null, "the program was deleted");
+					u.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "the program not deleted");
+				}
+				
 			}
 		});
 		
@@ -158,10 +166,16 @@ public class Update_delete_program extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = list2.getSelectedValue().toString();
 				AddPogramsFrame ap = new AddPogramsFrame(Menu.maneger, BCM.sch.getProgram(id));
+				int n = JOptionPane.showConfirmDialog(null, BCM.sch.getProgram(id).toString()+"\n you are shure that you"
+						+ " want to update this program","this is the program that yo want to update",JOptionPane.YES_NO_OPTION);
+				if(n==0) {
 				BCM.sch.deleteProgram(id);
 				ap.setVisible(true);
 				Update_delete_program u = new Update_delete_program();
-				u.dispose();
+				u.dispose();}
+				else {
+					JOptionPane.showMessageDialog(null, "the program not update");
+				}
 			}
 		});
 		
