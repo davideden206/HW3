@@ -150,19 +150,6 @@ public class Menu extends JFrame {
 					
 				}
 			});
-			contentPane.add(btnAddManager);
-			
-			JButton btnSoweByCost = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05DC\u05E4\u05D9 \u05E2\u05DC\u05D5\u05EA");
-			btnSoweByCost.setBounds(242, 127, 178, 25);
-			btnSoweByCost.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					
-				}
-			});
-			contentPane.add(btnSoweByCost);
 			
 			
 		
@@ -178,9 +165,9 @@ public class Menu extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ShowSchedualeByQuery show = new ShowSchedualeByQuery();
-				show.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				show.setVisible(true);
+				DisplaySchedualeByPrice bp = new DisplaySchedualeByPrice();
+				bp.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				bp.setVisible(true);
 				
 			}
 		});
