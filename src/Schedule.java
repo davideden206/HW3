@@ -81,11 +81,11 @@ public class Schedule {
 	}
 	 
 	 public void PrintPerCost() {
-		 for (ArrayList<Program> arrayList : WeeklySchedule) {
+		 for (ArrayList<Program> arrayList : this.WeeklySchedule) {
 			for (Program p : arrayList) {
 				if(p instanceof Series) {
 					if(((Series)p).isFlag()==false)
-						if(((Series)p).getCost()*((Series)p).getNumBroadcasted()>10000)
+						if(((Series)p).getCost()*((Series)p).getNumBroadcasted()>1)
 							System.out.println(p.toString());
 					((Series)p).setFlag(true);
 				}
@@ -151,7 +151,17 @@ public class Schedule {
 					((Series)p).setFlag(true);
 				}
 			}
-		}return listp;
+		}
+		for (ArrayList<Program> arrayList : WeeklySchedule) {
+			for (Program p : arrayList) {
+				if(p instanceof Series) {
+					if(((Series)p).isFlag()==true)
+					((Series)p).setFlag(false);
+				}
+			}
+		}
+		return listp;
+		
 	}
 
 	 

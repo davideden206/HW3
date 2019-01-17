@@ -13,12 +13,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import src.BCM;
+import src.News;
 import src.Program;
+import src.Series;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DisplaySchedualeByPrice extends JFrame {
 
@@ -73,6 +78,14 @@ public class DisplaySchedualeByPrice extends JFrame {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
+		JButton btnfindbyprice = new JButton("\u05DE\u05E6\u05D0 \u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA");
+		btnfindbyprice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnfindbyprice.setBounds(242, 12, 97, 23);
+		contentPane.add(btnfindbyprice);
+		
 		Object[][] o = new Object[50][8];
 		for(int k = 0;k<50;k++) {
 			for(int j = 0;j<8;j++) {
@@ -88,30 +101,45 @@ public class DisplaySchedualeByPrice extends JFrame {
 		
 		table.setEnabled(false);
 		table.setModel(model);
-		
+		TableColumnModel columnModel = table.getColumnModel();
+		columnModel.getColumn(6).setPreferredWidth(120);
 		
 		
 				
-				DefaultTableModel tmodel =  new DefaultTableModel(o,
-						new String[] {
-								"id", "name", "duration", "startHour", "endHour", "geners", "broadcaster/dayScheduled"
+		
+				
+				btnfindbyprice.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(textCost.getText()!=null) {
+							DefaultTableModel tmodel =  new DefaultTableModel(o,
+									new String[] {
+											"id", "name", "duration", "startHour", "endHour", "geners", "broadcaster/dayScheduled"
+									}
+									);
+							
+					int i =0;
+					for (Program p : BCM.sch.getProgramsByPrice(Integer.parseInt(textCost.getText()))) {
+						if(p instanceof News) {
+						tmodel.insertRow(i++,new Object[]{p.getId(),p.getName(),p.getDuration()
+								,p.getStartHour(),p.getEndHour(),p.getGeners().toString(),(News.class.cast(p).getBroadcaster())});
 						}
-						);
-		int y=0;
-		
-		while(y<7) {
-			int i =0;
-			for (Program p : BCM.sch.getProgramsByPrice(Integer.parseInt(textCost.getText()))) {
-				tmodel.insertRow(i,new Object[]{p.getId(),p.getName(),p.getDuration()
-						,p.getStartHour(),p.getEndHour(),p.getGeners().toString(),null});
-				//tmodel.setValueAt(program.getName(),i++, y);
+						else if(p instanceof Series) {
+							tmodel.insertRow(i++,new Object[]{p.getId(),p.getName(),p.getDuration()
+									,p.getStartHour(),p.getEndHour(),p.getGeners().toString(),(Series.class.cast(p).getDayScheduled())});
+						}
+						
+					}
+					
+						table.setModel(tmodel);
+						textCost.setText("");
+						  
+						}
+						
+					}
+				});
+				
 			}
-			y++;
-		}	
-				table.setModel(tmodel);
-				TableColumnModel columnModel = table.getColumnModel();
-				columnModel.getColumn(6).setPreferredWidth(120);
-			}
-		
 	}
 
