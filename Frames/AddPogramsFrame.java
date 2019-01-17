@@ -22,12 +22,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 import src.BCM;
+import src.DaysOfTheWeek;
 import src.Genres;
 import src.Languages;
 import src.Manager;
@@ -39,6 +41,8 @@ import src.TVShow;
 
 import javax.sql.rowset.serial.SerialArray;
 import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class AddPogramsFrame extends JFrame {
 
@@ -63,10 +67,14 @@ public class AddPogramsFrame extends JFrame {
 	private JLabel lable3;
 	private JLabel lable4;
 	private JLabel lable5;
+	private JLabel lable6;
 	private JButton btnAdd;
 	private JComboBox comboBox_1, comboBox_2,comboBox_3,comboBox4,comboBoxType;
+	private JList starsList;
 	private Manager m;
 	private Program p;
+	String[] dataliststar = {"mose ivgi", "gal gadut", "bar refaeli","miki mause","mose zocnik"};
+	String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};
 
 	/**
 	 * Launch the application.
@@ -91,7 +99,7 @@ public class AddPogramsFrame extends JFrame {
 		this.m = m;
 		this.p = p;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 484, 355);
+		setBounds(100, 100, 484, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -170,11 +178,17 @@ public class AddPogramsFrame extends JFrame {
 		lblEndHour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEndHour.setBounds(376, 228, 77, 17);
 		contentPane.add(lblEndHour);
-		String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};
+		
 		 comboBoxType = new JComboBox(typeOfPrograms);
 		comboBoxType.setBounds(224, 64, 151, 24);
 		contentPane.add(comboBoxType);
 		comboBoxType.getAlignmentX();
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(55, 243, 102, 136);
+		contentPane.add(scrollPane_1);
+		
+		
 		if(p!=null) {
 		int po = getPosion(typeOfPrograms,p.getGeners().toString() );
 		comboBoxType.setSelectedIndex(po);;
@@ -210,19 +224,22 @@ public class AddPogramsFrame extends JFrame {
 				}
 				else if(s=="Movie") {
 					clear();
+					//String[] datalist = {"mose ivgi", "gal gadut", "bar refaeli","miki mause","mose zocnik"};
+					starsList = new JList(dataliststar);
+					starsList.setVisible(true);
+					starsList.setBounds(89, 226, 86, 96);
+					starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+					contentPane.add(starsList);
 					
 					item1.setVisible(true);
 					lable1.setText("IMDB");
 					lable2.setText("day scheduled");
-					item3.setVisible(true);
-					lable3.setText("stars");
-
+					lable6.setVisible(true);
+					lable6.setText("stars");
 					lable4.setText("subtitle lenguges");
 					lable1.setVisible(true);
 					lable2.setVisible(true);
-					lable3.setVisible(true);
 					lable4.setVisible(true);
-					
 					comboBox_2 = new JComboBox<>(DayOfWeek.values());
 					comboBox_2.setBounds(73, 138, 102, 20);
 					contentPane.add(comboBox_2);
@@ -234,12 +251,17 @@ public class AddPogramsFrame extends JFrame {
 				}
 				else if(s=="Series") {
 					clear();
-					comboBox_1 = new JComboBox<>(DayOfWeek.values());
-					comboBox_1.setBounds(73, 110, 102, 20);
-					contentPane.add(comboBox_1);
-					comboBox_1.setVisible(true);
-					lable1.setVisible(true);
-					lable1.setText("day scheduled");
+					starsList = new JList(DayOfWeek.values());
+					starsList.setVisible(true);
+					starsList.setBounds(89, 226, 86, 135);
+					starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+					starsList.setVisibleRowCount(7);
+					starsList.getScrollableTracksViewportHeight();
+					contentPane.add(starsList);
+					
+					
+					lable6.setVisible(true);
+					lable6.setText("day scheduled");
 
 				}
 				else if(s=="chose") {
@@ -314,7 +336,6 @@ public class AddPogramsFrame extends JFrame {
 		lable5.setHorizontalAlignment(SwingConstants.CENTER);
 		lable5.setBounds(376, 253, 102, 17);
 		contentPane.add(lable5);
-		
 
 		comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(73, 110, 102, 20);
@@ -336,8 +357,24 @@ public class AddPogramsFrame extends JFrame {
 		contentPane.add(comboBox4);
 		
 		 btnAdd = new JButton("add");
-		btnAdd.setBounds(200, 290, 89, 23);
+		btnAdd.setBounds(190, 414, 89, 23);
 		contentPane.add(btnAdd);
+		
+		
+		
+		lable6= new JLabel("");
+		lable6.setBounds(177, 227, 100, 16);
+		contentPane.add(lable6);
+		
+		
+		
+		
+		starsList = new JList(DayOfWeek.values());
+		
+		starsList.setVisible(false);
+		starsList.setMaximumSize(getSize());
+		starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		add(new JScrollPane(starsList));
 		
 		btnAdd.addActionListener(new ActionListener() {
 			
@@ -362,6 +399,8 @@ public class AddPogramsFrame extends JFrame {
 		comboBox_1.setVisible(false);
 		comboBox_2.setVisible(false);
 		comboBox_3.setVisible(false);
+		starsList.setVisible(false);
+		lable6.setVisible(false);
 	}
 	
 	public void addProgram() {
@@ -395,11 +434,16 @@ public class AddPogramsFrame extends JFrame {
 		if(comboBoxType.getSelectedItem().toString().equals("Movie")) {
 			double IMDB = Double.parseDouble(item1.getText());
 			int daySchasuled = comboBox_2.getSelectedIndex();
-			String stars = item2.getText();
+			ArrayList<String> stars = new ArrayList<>();
+			int[] selected = starsList.getSelectedIndices();
+			for(int i:selected) {
+				stars.add(dataliststar[i]);
+			}
+			
+			
 			String subtitleLenguage = comboBox_3.getSelectedItem().toString();
-			ArrayList<String> starss = new ArrayList<>();
-			starss.add(stars);
-			Movie mo = new Movie(pid, pname, duration, startHour, endHour, IMDB, daySchasuled, starss, Languages.valueOf(subtitleLenguage), Genres.valueOf(pgenres));
+			
+			Movie mo = new Movie(pid, pname, duration, startHour, endHour, IMDB, daySchasuled, stars, Languages.valueOf(subtitleLenguage), Genres.valueOf(pgenres));
 		
 		try {
 			m.addProgramByManger(mo, BCM.sch);
@@ -412,9 +456,15 @@ public class AddPogramsFrame extends JFrame {
 		}
 		
 		if (comboBoxType.getSelectedItem().toString().equals("Series")) {
-			int daySchasuled = comboBox_1.getSelectedIndex();
+			
 			ArrayList<Integer>daySchasuledList = new ArrayList<>();
-			daySchasuledList.add(daySchasuled);
+			int[] selected = starsList.getSelectedIndices();
+			
+			for(int i:selected) {
+				daySchasuledList.add(i);
+			}
+			
+			
 			Series ss  = new Series(pid, pname, duration, startHour, endHour, Genres.valueOf(pgenres),daySchasuledList);
 			
 			try {
