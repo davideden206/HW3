@@ -139,6 +139,20 @@ public class Schedule {
 	public ArrayList<Program>[] getWeeklySchedule() {
 		return WeeklySchedule;
 	}
+	
+	public ArrayList<Program> getProgramsByPrice(int price){
+		ArrayList<Program> listp = new ArrayList<>();
+		for (ArrayList<Program> arrayList : WeeklySchedule) {
+			for (Program p : arrayList) {
+				if(p instanceof Series) {
+					if(((Series)p).isFlag()==false)
+						if(((Series)p).getCost()*((Series)p).getNumBroadcasted()>price)
+							listp.add(p);
+					((Series)p).setFlag(true);
+				}
+			}
+		}return listp;
+	}
 
 	 
 	 
