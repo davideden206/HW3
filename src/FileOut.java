@@ -17,7 +17,7 @@ public class FileOut {
 	      try 
 	      {
 	         output = new ObjectOutputStream(
-	            Files.newOutputStream(Paths.get("ScheduleSer.ser")));
+	            Files.newOutputStream(Paths.get("Schedule.ser")));
 	      }
 	      catch (IOException ioException)
 	      {

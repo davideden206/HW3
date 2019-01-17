@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 
-public class filein {
+public class Filein {
 	private static Scanner input;
 	static ArrayList<Manager> manager = new ArrayList<>();
 	static ArrayList<Movie> movie = new ArrayList<>();

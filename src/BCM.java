@@ -25,11 +25,16 @@ public class BCM  {
 	public static void main(String[] args) throws Exception {
 		
 		// read programs from txt file
-		filein.openFile();
-		filein.readRecords();
-		filein.closeFile();
+		//Filein.openFile();
+		//Filein.readRecords();
+		//Filein.closeFile();
 		
-		managers = filein.manager;
+		//read programs from ser file
+		OpenSer.openFile();
+		sch = OpenSer.readRecords();
+		OpenSer.closeFile();
+		
+		//managers = Filein.manager;
 		
 		
 		// add programs to Schedule
@@ -86,10 +91,10 @@ public class BCM  {
 	
 	public static void addNews(Schedule sch)
 	{
-		for (News n: filein.news)
+		for (News n: Filein.news)
 		{
 			try {
-				filein.manager.get(0).addProgramByManger(n,sch);
+				Filein.manager.get(0).addProgramByManger(n,sch);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -98,10 +103,10 @@ public class BCM  {
 	}
 	public static void addMove(Schedule sch)
 	{
-		for (Movie m : filein.movie)
+		for (Movie m : Filein.movie)
 		{
 			try {
-				filein.manager.get(1).addProgramByManger(m, sch);
+				Filein.manager.get(1).addProgramByManger(m, sch);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,10 +115,10 @@ public class BCM  {
 	}
 	public static void addSerise(Schedule sch)
 	{
-		for(Series s : filein.series)
+		for(Series s : Filein.series)
 		{
 			try {
-				filein.manager.get(2).addProgramByManger(s, sch);
+				Filein.manager.get(2).addProgramByManger(s, sch);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -122,10 +127,10 @@ public class BCM  {
 	}
 	public static void addTvshow(Schedule sch)
 	{
-		for (TVShow t : filein.tvShow)
+		for (TVShow t : Filein.tvShow)
 		{
 			try {
-				filein.manager.get(3).addProgramByManger(t, sch);
+				Filein.manager.get(3).addProgramByManger(t, sch);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
