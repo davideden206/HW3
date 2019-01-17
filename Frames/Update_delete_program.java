@@ -148,7 +148,9 @@ public class Update_delete_program extends JFrame {
 						+ " want to delete this program","this is the program that yo want to deleted",JOptionPane.YES_NO_OPTION);
 				if(n==0) {
 					BCM.sch.deleteProgram(id);
+					BCM.saveSchedule();
 					Update_delete_program u = new Update_delete_program();
+					u.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					u.dispose();
 					JOptionPane.showMessageDialog(null, "the program was deleted");
 					u.setVisible(true);
@@ -172,6 +174,7 @@ public class Update_delete_program extends JFrame {
 				BCM.sch.deleteProgram(id);
 				ap.setVisible(true);
 				Update_delete_program u = new Update_delete_program();
+				u.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				u.dispose();}
 				else {
 					JOptionPane.showMessageDialog(null, "the program not update");

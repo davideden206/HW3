@@ -14,12 +14,14 @@ import src.BCM;
 import src.Manager;
 
 import java.awt.Font;
+import javax.swing.JPasswordField;
 
 public class LogINFrame extends JFrame {
 
 	public JFrame frame;
 	private JTextField username;
-	private JTextField password;
+	
+	private JPasswordField passwordField;
 
 
 	/**
@@ -56,10 +58,10 @@ public class LogINFrame extends JFrame {
 		frame.getContentPane().add(username);
 		username.setColumns(10);
 
-		password = new JTextField();
-		password.setBounds(98, 113, 116, 22);
-		frame.getContentPane().add(password);
-		password.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(98, 113, 116, 22);
+		frame.getContentPane().add(passwordField);
 
 		JLabel lblNewLabel_1 = new JLabel("סיסמא");
 		lblNewLabel_1.setBounds(224, 116, 66, 16);
@@ -77,17 +79,19 @@ public class LogINFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				if((username.getText().equals("admin")||username.equals("ADMIN"))
-						&&(password.getText().equals("admin")||password.getText().equals("ADMIN"))){
+				if(username.getText().matches("[a-zA-z]+(['-][a-zA-Z]+)*")&&
+						(passwordField.getText().equals("ADMIN")||passwordField.getText().equals("admin")||passwordField.getText().matches("[0-9]*"))) {
+					
+				if((username.getText().equals("admin")||username.getText().equals("ADMIN"))
+						&&(passwordField.getText().equals("admin")||passwordField.getText().equals("ADMIN"))){
 					Menu m = new Menu(null);
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					m.setVisible(true);
 					frame.dispose();
 				}
 				
-				else if(checkUsername(Integer.valueOf(password.getText()), username.getText())) {
-					Menu m = new Menu(getManager(Integer.valueOf(password.getText())));
+				else if(checkUsername(Integer.valueOf(passwordField.getText()), username.getText())) {
+					Menu m = new Menu(getManager(Integer.valueOf(passwordField.getText())));
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					m.setVisible(true);
 					frame.dispose();
@@ -103,12 +107,20 @@ public class LogINFrame extends JFrame {
 
 
 			}
+				else {
+					JOptionPane.showMessageDialog(null, "you need entr name whit only english Letters and password with only number");
+				}
+			}
 		});
+		
 		frame.getContentPane().add(button);
+		
+		
 	}
+	
 	public boolean checkUsername(int id,String name) {
 		for (Manager m: BCM.managers) {
-			if (m.getId()==id&&m.getName().equals(name)) {
+			if (m.getId() == id && m.getName().equals(name)) {
 				return true;
 			}
 		}

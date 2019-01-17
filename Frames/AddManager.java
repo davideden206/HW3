@@ -80,9 +80,13 @@ public class AddManager extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(idManager!=null&&nameManger!=null) {
+				String userName = nameManger.getText();
+				String Password = idManager.getText();
+				
+				if((Password!=null && userName!=null) &&( userName.matches("[a-zA-Z]*")&&
+						Password.matches("[0-9]*"))) {
 					
-					Manager m = new Manager(Integer.parseInt(idManager.getText()) , nameManger.getText());
+					Manager m = new Manager(Integer.parseInt(Password) , userName);
 					BCM.managers.add(m);
 					BCM.saveSchedule();
 					JOptionPane.showMessageDialog(null, "Succeeded");

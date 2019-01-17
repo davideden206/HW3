@@ -75,7 +75,14 @@ public class AddPogramsFrame extends JFrame {
 	private Program p;
 	JScrollPane scrollPane,scrollPane2;
 	String[] dataliststar = {"mose-ivgi", "gal-gadut", "bar-refaeli","miki-mause","mose-zocnik"};
-	String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};
+	String [] typeOfPrograms = {"chose","TVShow","Movie","Series","News"};
+	
+	private int pid;
+	private String pname;
+	private int duration ;
+	private double startHour ;
+	private double endHour ;
+	private String pgenres ;
 
 	/**
 	 * Launch the application.
@@ -223,7 +230,7 @@ public class AddPogramsFrame extends JFrame {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				String s = e.getItem().toString();
-				if(s=="TVshow") {
+				if(s=="TVShow") {
 					clear();
 					comboBox_1 = new JComboBox<>(DayOfWeek.values());
 					comboBox_1.setBounds(73, 110, 102, 20);
@@ -385,6 +392,7 @@ public class AddPogramsFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				addProgram();
 				
 			}
@@ -413,15 +421,17 @@ public class AddPogramsFrame extends JFrame {
 	}
 	
 	public void addProgram() {
-		int pid =Integer.valueOf(programId.getText());
-		String pname = programName.getText().toString();
-		int duration = Integer.valueOf(programDuration.getText());
-		double startHour = Double.valueOf(programStartHour.getText());
-		double endHour = Double.valueOf(programEndHour.getText());
-		String pgenres  =comboBox4.getSelectedItem().toString();
-		 
 		
-		if (comboBoxType.getSelectedItem().toString().equals("TVshow")) {
+		 pid =Integer.valueOf(programId.getText());
+		 pname = programName.getText().toString();
+		 duration = Integer.valueOf(programDuration.getText());
+		 startHour = Double.valueOf(programStartHour.getText());
+		 endHour = Double.valueOf(programEndHour.getText());
+		 pgenres  =comboBox4.getSelectedItem().toString();
+		
+			
+		
+		if (comboBoxType.getSelectedItem().toString().equals("TVShow")) {
 			int day= comboBox_1.getSelectedIndex();
 			String guest= item2.getText();
 			String host= item3.getText();
@@ -432,7 +442,7 @@ public class AddPogramsFrame extends JFrame {
 				BCM.saveSchedule();
 				dispose();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "The TVShow has not been added");
 				e.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
@@ -458,7 +468,8 @@ public class AddPogramsFrame extends JFrame {
 			BCM.saveSchedule();
 			dispose();
 		}catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Movie not Succeeded");
+			JOptionPane.showMessageDialog(null, "The Movie has not been added");
+			e.printStackTrace();
 		}
 		JOptionPane.showMessageDialog(null, "Movie add Succeeded");
 		}
@@ -480,8 +491,10 @@ public class AddPogramsFrame extends JFrame {
 				BCM.saveSchedule();
 				dispose();
 			}catch (Exception e) {
-				// TODO: handle exception
-			}JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+				JOptionPane.showMessageDialog(null, "The Series has not been added");
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Series add Succeeded");
 		}
 		
 		if (comboBoxType.getSelectedItem().toString().equals("News")) {
@@ -492,18 +505,35 @@ public class AddPogramsFrame extends JFrame {
 				BCM.saveSchedule();
 				dispose();
 			}catch (Exception e) {
-				// TODO: handle exception
-			}JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+				JOptionPane.showMessageDialog(null, "The News has not been added");
+				e.printStackTrace();
+			}JOptionPane.showMessageDialog(null, "News add Succeeded");
 		}
-		
 	}
+	
+	
+	
 	public int getPosion(String [] list,String value) {
 		int cont = 0;
 		for (String l :list) {
-			if(l.equals(value))
+			if(l.equals(value)) {
 				return cont;
-				cont++;
+				}
+			cont++;
 		}
 		return -2;
+	}
+	
+	public boolean chackREG() {
+		if(String.valueOf(pid).matches("[0-9]+")&&
+				pname.matches("[a-zA-z]+")&&
+				String.valueOf(duration).matches("[1-9]+")&&
+				String.valueOf(startHour).matches("(\\d+\\.\\d+)")&&
+				String.valueOf(endHour).matches("(\\d+\\.\\d+)")&&
+				pgenres.matches("[a-zA-z]+")	
+					) {
+			return true;
+		}
+		return false;
 	}
 }

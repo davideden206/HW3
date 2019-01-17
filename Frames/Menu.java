@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame {
 	static Manager maneger;
 	private JPanel contentPane;
+	private JButton btnAddManager;
 
 	/**
 	 * Launch the application.
@@ -51,9 +52,9 @@ public class Menu extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		
 		JButton btnSaveExit = new JButton("\u05E9\u05DE\u05D5\u05E8 \u05D5\u05E6\u05D0");
 		btnSaveExit.setBounds(12, 202, 115, 38);
+		contentPane.add(btnSaveExit);
 		btnSaveExit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -64,7 +65,7 @@ public class Menu extends JFrame {
 				
 			}
 		});
-		contentPane.add(btnSaveExit);
+		
 		
 		JButton disply_schduale = new JButton("\u05D4\u05E6\u05D2\u05EA \u05DC\u05D5\u05D6");
 		disply_schduale.setBounds(242, 32, 178, 23);
@@ -85,10 +86,6 @@ public class Menu extends JFrame {
 		displayByDay.setBounds(242, 68, 178, 23);
 		contentPane.add(displayByDay);
 		
-		
-		
-		
-		
 		displayByDay.addActionListener(new ActionListener() {
 			
 			@Override
@@ -100,15 +97,31 @@ public class Menu extends JFrame {
 			}
 		});
 		
-		
-		
-		if (m!=null) {
-			
-		
 		JButton updat_delet_program = new JButton("\u05DE\u05D7\u05D9\u05E7\u05D4 / \u05E2\u05D3\u05DB\u05D5\u05DF \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA");
 		updat_delet_program.setBounds(242, 140, 178, 23);
 		contentPane.add(updat_delet_program);
+		updat_delet_program.setVisible(false);
 		
+		JButton addProgram = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA");
+		addProgram.setBounds(242, 104, 178, 23);
+		contentPane.add(addProgram);
+		addProgram.setVisible(false);
+		
+		btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
+		btnAddManager.setBounds(24, 67, 178, 25);
+		contentPane.add(btnAddManager);
+		btnAddManager.setVisible(false);
+		
+		
+		JButton display_by_price = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA \u05DC\u05E4\u05D9 \u05DE\u05D7\u05D9\u05E8");
+		display_by_price.setBounds(24, 32, 178, 23);
+		contentPane.add(display_by_price);
+		display_by_price.setVisible(false);
+		
+		if (m!=null) {
+			
+			updat_delet_program.setVisible(true);
+
 		updat_delet_program.addActionListener(new ActionListener() {
 			
 			@Override
@@ -120,12 +133,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		
-		    
-		JButton addProgram = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA");
-		addProgram.setBounds(242, 104, 178, 23);
-		contentPane.add(addProgram);
-		
+		addProgram.setVisible(true);
 		addProgram.addActionListener(new ActionListener() {
 			
 			@Override
@@ -138,8 +146,7 @@ public class Menu extends JFrame {
 		
 		}
 		else {
-			JButton btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
-			btnAddManager.setBounds(242, 104, 178, 25);
+			btnAddManager.setVisible(true);
 			btnAddManager.addActionListener(new ActionListener() {
 				
 				@Override
@@ -152,14 +159,8 @@ public class Menu extends JFrame {
 			});
 			
 			
-		
-		JButton display_by_price = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA \u05DC\u05E4\u05D9 \u05DE\u05D7\u05D9\u05E8");
-		display_by_price.setBounds(24, 32, 178, 23);
-		contentPane.add(display_by_price);
-		
-		JButton btnNewButton = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
-		btnNewButton.setBounds(24, 67, 178, 25);
-		contentPane.add(btnNewButton);
+			display_by_price.setVisible(true);
+			
 		
 		display_by_price.addActionListener(new ActionListener() {
 			
