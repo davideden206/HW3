@@ -25,6 +25,7 @@ public class BCM  {
 	
 	public static void main(String[] args) throws Exception {
 		
+		
 		OpenSer.openFile();
 		sch = OpenSer.readRecords();
 		OpenSer.closeFile();

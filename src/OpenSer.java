@@ -36,6 +36,10 @@ public class OpenSer {
 			while (true) // loop until there is an EOFException
 			{
 				Object o = (Object)input.readObject();
+				if(o instanceof Manager) {
+					Manager m = (Manager)o;
+					BCM.managers.add(m);
+				}
 				if(o instanceof Program)
 				{
 					Program p = (Program)o;
@@ -43,10 +47,7 @@ public class OpenSer {
 					m.addProgramByManger(p, SchSer);
 					//SchSer.addProgram(p);
 				}
-				if(o instanceof Manager) {
-					Manager m = (Manager)o;
-					BCM.managers.add(m);
-				}
+				
 
 			}}
 
