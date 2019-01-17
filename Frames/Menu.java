@@ -130,7 +130,7 @@ public class Menu extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddPogramsFrame addprogram = new AddPogramsFrame(null, null);
+				AddPogramsFrame addprogram = new AddPogramsFrame(maneger, null);
 				addprogram.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				addprogram.setVisible(true);
 			}

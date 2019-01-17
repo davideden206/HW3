@@ -70,10 +70,11 @@ public class AddPogramsFrame extends JFrame {
 	private JLabel lable6;
 	private JButton btnAdd;
 	private JComboBox comboBox_1, comboBox_2,comboBox_3,comboBox4,comboBoxType;
-	private JList starsList;
+	private JList starsList,starsList2;
 	private Manager m;
 	private Program p;
-	String[] dataliststar = {"mose ivgi", "gal gadut", "bar refaeli","miki mause","mose zocnik"};
+	JScrollPane scrollPane,scrollPane2;
+	String[] dataliststar = {"mose-ivgi", "gal-gadut", "bar-refaeli","miki-mause","mose-zocnik"};
 	String [] typeOfPrograms = {"chose","TVshow","Movie","Series","News"};
 
 	/**
@@ -184,14 +185,33 @@ public class AddPogramsFrame extends JFrame {
 		contentPane.add(comboBoxType);
 		comboBoxType.getAlignmentX();
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(55, 243, 102, 136);
-		contentPane.add(scrollPane_1);
+		 scrollPane = new JScrollPane();
+		scrollPane.setBounds(89, 253, 100, 142);
+		contentPane.add(scrollPane);
+		
+		 starsList = new JList(DayOfWeek.values());
+		scrollPane.setViewportView(starsList);
+		starsList.setMaximumSize(getSize());
+		starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		scrollPane.setVisible(false);
+		starsList.setVisible(false);
+		
+		 scrollPane2 = new JScrollPane();
+			scrollPane2.setBounds(89, 253, 100, 142);
+			contentPane.add(scrollPane2);
+			
+			 starsList2 = new JList(dataliststar);
+			scrollPane2.setViewportView(starsList2);
+			starsList2.setMaximumSize(getSize());
+			starsList2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+			scrollPane2.setVisible(false);
+			starsList2.setVisible(false);
+		
 		
 		
 		if(p!=null) {
-		int po = getPosion(typeOfPrograms,p.getGeners().toString() );
-		comboBoxType.setSelectedIndex(po);;
+		int po = getPosion(typeOfPrograms,p.getClass().getName().substring(4));
+		comboBoxType.setSelectedIndex(po);
 		}
 		
 		
@@ -224,12 +244,10 @@ public class AddPogramsFrame extends JFrame {
 				}
 				else if(s=="Movie") {
 					clear();
-					//String[] datalist = {"mose ivgi", "gal gadut", "bar refaeli","miki mause","mose zocnik"};
-					starsList = new JList(dataliststar);
-					starsList.setVisible(true);
-					starsList.setBounds(89, 226, 86, 96);
-					starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-					contentPane.add(starsList);
+					
+					scrollPane2.setVisible(true);
+					starsList2.setVisible(true);
+					
 					
 					item1.setVisible(true);
 					lable1.setText("IMDB");
@@ -251,14 +269,8 @@ public class AddPogramsFrame extends JFrame {
 				}
 				else if(s=="Series") {
 					clear();
-					starsList = new JList(DayOfWeek.values());
+					scrollPane.setVisible(true);
 					starsList.setVisible(true);
-					starsList.setBounds(89, 226, 86, 135);
-					starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-					starsList.setVisibleRowCount(7);
-					starsList.getScrollableTracksViewportHeight();
-					contentPane.add(starsList);
-					
 					
 					lable6.setVisible(true);
 					lable6.setText("day scheduled");
@@ -363,18 +375,11 @@ public class AddPogramsFrame extends JFrame {
 		
 		
 		lable6= new JLabel("");
-		lable6.setBounds(177, 227, 100, 16);
+		lable6.setBounds(89, 225, 100, 16);
 		contentPane.add(lable6);
+		getContentPane().add(new JScrollPane());
 		
 		
-		
-		
-		starsList = new JList(DayOfWeek.values());
-		
-		starsList.setVisible(false);
-		starsList.setMaximumSize(getSize());
-		starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		add(new JScrollPane(starsList));
 		
 		btnAdd.addActionListener(new ActionListener() {
 			
@@ -401,6 +406,10 @@ public class AddPogramsFrame extends JFrame {
 		comboBox_3.setVisible(false);
 		starsList.setVisible(false);
 		lable6.setVisible(false);
+		scrollPane.setVisible(false);
+		starsList.setVisible(false);
+		scrollPane2.setVisible(false);
+		starsList2.setVisible(false);
 	}
 	
 	public void addProgram() {
@@ -420,22 +429,21 @@ public class AddPogramsFrame extends JFrame {
 			TVShow tv = new TVShow(pid, pname, duration, startHour, endHour, day, guest, host,Genres.valueOf(pgenres));
 			try {
 				m.addProgramByManger(tv, BCM.sch);
-				contentPane.setVisible(false);
+				BCM.saveSchedule();
+				dispose();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
 			
-		}else {
-			JOptionPane.showMessageDialog(null, "TVShow not add ");
 		}
 		
 		if(comboBoxType.getSelectedItem().toString().equals("Movie")) {
 			double IMDB = Double.parseDouble(item1.getText());
 			int daySchasuled = comboBox_2.getSelectedIndex();
 			ArrayList<String> stars = new ArrayList<>();
-			int[] selected = starsList.getSelectedIndices();
+			int[] selected = starsList2.getSelectedIndices();
 			for(int i:selected) {
 				stars.add(dataliststar[i]);
 			}
@@ -447,12 +455,12 @@ public class AddPogramsFrame extends JFrame {
 		
 		try {
 			m.addProgramByManger(mo, BCM.sch);
+			BCM.saveSchedule();
+			dispose();
 		}catch (Exception e) {
-			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Movie not Succeeded");
 		}
-		JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
-		}else {
-			JOptionPane.showMessageDialog(null, "TVShow not add ");
+		JOptionPane.showMessageDialog(null, "Movie add Succeeded");
 		}
 		
 		if (comboBoxType.getSelectedItem().toString().equals("Series")) {
@@ -469,11 +477,11 @@ public class AddPogramsFrame extends JFrame {
 			
 			try {
 				m.addProgramByManger(ss, BCM.sch);
+				BCM.saveSchedule();
+				dispose();
 			}catch (Exception e) {
 				// TODO: handle exception
 			}JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
-		}else {
-			JOptionPane.showMessageDialog(null, "TVShow not add ");
 		}
 		
 		if (comboBoxType.getSelectedItem().toString().equals("News")) {
@@ -481,19 +489,20 @@ public class AddPogramsFrame extends JFrame {
 			News n = new News(pid, pname, duration, startHour, endHour, Genres.valueOf(pgenres), broadcaster);
 			try {
 				m.addProgramByManger(n, BCM.sch);
+				BCM.saveSchedule();
+				dispose();
 			}catch (Exception e) {
 				// TODO: handle exception
 			}JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
-		}else {
-			JOptionPane.showMessageDialog(null, "TVShow not add ");
 		}
 		
 	}
 	public int getPosion(String [] list,String value) {
 		int cont = 0;
 		for (String l :list) {
-			if(l==value) return cont;
-			cont++;
+			if(l.equals(value))
+				return cont;
+				cont++;
 		}
 		return -2;
 	}
