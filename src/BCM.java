@@ -25,7 +25,7 @@ public class BCM  {
 	
 	public static void main(String[] args) throws Exception {
 		
-		
+		// open and lobe ser file
 		OpenSer.openFile();
 		sch = OpenSer.readRecords();
 		OpenSer.closeFile();
@@ -34,11 +34,11 @@ public class BCM  {
 		
 
 		System.out.println(sch);
-		
-	// end mane	
-		
-		
+		System.out.println("<<<<<<<< the managers >>>>>>>>");
+		System.out.println(managers);
 
+		
+		// ran at the first frame
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -53,66 +53,13 @@ public class BCM  {
 	}
 	
 	// Mutates for add program
-	
+	/**
+	 * save the Schedole in Ser file
+	 */
 	public static void saveSchedule() {
 	FileOut.openFileSer();
 	FileOut.addRecordsSer(sch.ScheduletoArry());
 	FileOut.closeFileSer();
 	}
 	
-	
-	public static void addNews(Schedule sch)
-	{
-		for (News n: Filein.news)
-		{
-			try {
-				Filein.manager.get(0).addProgramByManger(n,sch);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	public static void addMove(Schedule sch)
-	{
-		for (Movie m : Filein.movie)
-		{
-			try {
-				Filein.manager.get(1).addProgramByManger(m, sch);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	public static void addSerise(Schedule sch)
-	{
-		for(Series s : Filein.series)
-		{
-			try {
-				Filein.manager.get(2).addProgramByManger(s, sch);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	public static void addTvshow(Schedule sch)
-	{
-		for (TVShow t : Filein.tvShow)
-		{
-			try {
-				Filein.manager.get(3).addProgramByManger(t, sch);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	
-	
-	
-	
-
 }
