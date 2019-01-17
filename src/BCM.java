@@ -19,49 +19,20 @@ public class BCM  {
 	
 	
 	public static ArrayList<Manager> managers = new ArrayList<>();
+	public ArrayList<Program> programs;
 	public static Schedule sch = new Schedule();
 	public static Schedule newsch = new Schedule();
 	
 	public static void main(String[] args) throws Exception {
 		
-		// read programs from txt file
-		//Filein.openFile();
-		//Filein.readRecords();
-		//Filein.closeFile();
-		
-		//read programs from ser file
 		OpenSer.openFile();
 		sch = OpenSer.readRecords();
 		OpenSer.closeFile();
 		
-		//managers = Filein.manager;
-		
-		
-		// add programs to Schedule
-		System.out.println("<<<<< add programs to Schedule from txt file >>>>>");
-		
-		addNews(sch);
-		addTvshow(sch);
-		addMove(sch);
-		addSerise(sch);
-	
-		// save Schedule to ser file
-		System.out.println("<<<< Schedule to ser file >>>>");
 		saveSchedule();
 		
-		// open ser file in new Schedule
-		System.out.println("<<<<<< open ser file in new Schedule >>>>>>");
-		
-		OpenSer.openFile();
-		newsch = OpenSer.readRecords();
-		OpenSer.closeFile();
-		
-		// print Schedule
-		System.out.println("\n<<<<<<< print Schedule >>>>>>> \n");
-		
-		System.out.println(newsch);
-		System.out.println(" print all pogram  cost more 10000");
-		newsch.PrintPerCost();
+
+		System.out.println(sch);
 		
 	// end mane	
 		
@@ -137,6 +108,7 @@ public class BCM  {
 			}
 		}
 	}
+	
 	
 	
 	

@@ -17,7 +17,7 @@ public class FileOut {
 	      try 
 	      {
 	         output = new ObjectOutputStream(
-	            Files.newOutputStream(Paths.get("Schedule.ser")));
+	            Files.newOutputStream(Paths.get("ScheduleSer.ser")));
 	      }
 	      catch (IOException ioException)
 	      {
@@ -29,6 +29,14 @@ public class FileOut {
 	   // add records to file
 	   public static void addRecordsSer(ArrayList<Program> pro)
 	   {
+		   for (Manager m : BCM.managers) {
+		    	  try {
+					output.writeObject(m);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		      }
 	      for (Program p : pro) 
 		   {
 	         try 
@@ -46,14 +54,7 @@ public class FileOut {
 	         } 
    
 	      }
-	      for (Manager m : BCM.managers) {
-	    	  try {
-				output.writeObject(m);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	      }
+	      
 	   } 
 
 	   // close file and terminate application 

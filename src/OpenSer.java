@@ -1,5 +1,6 @@
 package src;
 import java.io.EOFException;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
@@ -28,17 +29,19 @@ public class OpenSer {
 	public static Schedule readRecords()
 	{
 		Schedule SchSer = new Schedule();
-		BCM.managers.clear();
+		//BCM.managers.clear();
 
 		try 
 		{
 			while (true) // loop until there is an EOFException
 			{
-				Object o = input.readObject();
+				Object o = (Object)input.readObject();
 				if(o instanceof Program)
 				{
 					Program p = (Program)o;
-					SchSer.addProgram(p);
+					Manager m = p.getManager();
+					m.addProgramByManger(p, SchSer);
+					//SchSer.addProgram(p);
 				}
 				if(o instanceof Manager) {
 					Manager m = (Manager)o;
