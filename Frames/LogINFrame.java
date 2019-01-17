@@ -86,7 +86,7 @@ public class LogINFrame extends JFrame {
 					frame.dispose();
 				}
 				
-				 if(checkUsername(Integer.valueOf(password.getText()), username.getText())) {
+				else if(checkUsername(Integer.valueOf(password.getText()), username.getText())) {
 					Menu m = new Menu(getManager(Integer.valueOf(password.getText())));
 					JOptionPane.showMessageDialog(null, "Succeeded");
 					m.setVisible(true);

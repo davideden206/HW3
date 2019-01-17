@@ -43,6 +43,7 @@ public class AddManager extends JFrame {
 	 * Create the frame.
 	 */
 	public AddManager() {
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -80,11 +81,13 @@ public class AddManager extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(idManager!=null&&nameManger!=null) {
+					
 					Manager m = new Manager(Integer.parseInt(idManager.getText()) , nameManger.getText());
 					BCM.managers.add(m);
+					BCM.saveSchedule();
 					JOptionPane.showMessageDialog(null, "Succeeded");
-					AddManager am = new AddManager();
-					am.dispose();
+					dispose();
+					
 
 				}
 				else {

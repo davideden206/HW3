@@ -42,10 +42,7 @@ public class BCM  {
 	
 		// save Schedule to ser file
 		System.out.println("<<<< Schedule to ser file >>>>");
-		
-		FileOut.openFileSer();
-		FileOut.addRecordsSer(sch.ScheduletoArry());
-		FileOut.closeFileSer();
+		saveSchedule();
 		
 		// open ser file in new Schedule
 		System.out.println("<<<<<< open ser file in new Schedule >>>>>>");
@@ -79,6 +76,12 @@ public class BCM  {
 	}
 	
 	// Mutates for add program
+	
+	public static void saveSchedule() {
+	FileOut.openFileSer();
+	FileOut.addRecordsSer(sch.ScheduletoArry());
+	FileOut.closeFileSer();
+	}
 	
 	
 	public static void addNews(Schedule sch)

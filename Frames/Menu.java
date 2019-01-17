@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import src.BCM;
 import src.Manager;
 import src.Program;
 
@@ -49,21 +50,20 @@ public class Menu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		// נשאר להוסיף ליסינר ליציאה ןעידכון הקובץ וליסינר להוספת מנהל חדש
-		JButton btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
-		btnAddManager.setBounds(242, 104, 178, 25);
-		btnAddManager.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		contentPane.add(btnAddManager);
+		
 		
 		JButton btnSaveExit = new JButton("\u05E9\u05DE\u05D5\u05E8 \u05D5\u05E6\u05D0");
 		btnSaveExit.setBounds(12, 202, 115, 38);
+		btnSaveExit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BCM.saveSchedule();
+				setDefaultLookAndFeelDecorated(getFocusTraversalKeysEnabled());
+				dispose();
+				
+			}
+		});
 		contentPane.add(btnSaveExit);
 		
 		JButton disply_schduale = new JButton("\u05D4\u05E6\u05D2\u05EA \u05DC\u05D5\u05D6");
@@ -84,6 +84,8 @@ public class Menu extends JFrame {
 		JButton displayByDay = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA \u05DC\u05E4\u05D9 \u05D9\u05D5\u05DD");
 		displayByDay.setBounds(242, 68, 178, 23);
 		contentPane.add(displayByDay);
+		
+		
 		
 		
 		
@@ -136,6 +138,33 @@ public class Menu extends JFrame {
 		
 		}
 		else {
+			JButton btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E4\u05EA \u05DE\u05E0\u05D4\u05DC");
+			btnAddManager.setBounds(242, 104, 178, 25);
+			btnAddManager.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					AddManager am = new AddManager();
+					am.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					am.setVisible(true);
+					
+				}
+			});
+			contentPane.add(btnAddManager);
+			
+			JButton btnSoweByCost = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05DC\u05E4\u05D9 \u05E2\u05DC\u05D5\u05EA");
+			btnSoweByCost.setBounds(242, 127, 178, 25);
+			btnSoweByCost.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					
+				}
+			});
+			contentPane.add(btnSoweByCost);
+			
+			
 		
 		JButton display_by_price = new JButton("\u05D4\u05E6\u05D2\u05EA \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA \u05DC\u05E4\u05D9 \u05DE\u05D7\u05D9\u05E8");
 		display_by_price.setBounds(24, 32, 178, 23);
