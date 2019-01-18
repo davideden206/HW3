@@ -3,6 +3,8 @@ package src;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Schedule {
 	
 	 ArrayList<Program>[] WeeklySchedule;
@@ -48,6 +50,7 @@ public class Schedule {
 			}
 				System.out.println(p.toString());
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "The programs collide");
 			System.err.println(e.getMessage()+"The programs collide");
 		}
 		

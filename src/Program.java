@@ -1,6 +1,8 @@
 package src;
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
 public abstract class Program implements Serializable {
 
 	private int id;
@@ -15,12 +17,12 @@ public abstract class Program implements Serializable {
 
 	public Program(int id, String name, int duration, double startHour, double endHour,Genres geners) {
 		super();
-		this.id = id;
-		Name = name;
-		this.duration = duration;
+		this.setId(id);
+		this.setName(name);
+		this.setDuration(duration);
 		this.setEndHour(endHour);
 		this.setStartHour(startHour);
-		this.geners = geners;
+		this.setGeners(geners);
 	}
 
 	public int getId() {
@@ -28,7 +30,14 @@ public abstract class Program implements Serializable {
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		try {
+			if(String.valueOf(id).matches("[0-9]+"))
+				this.id = id;
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "The id not valide must be number");
+			e.getMessage();
+		}
+		
 	}
 
 	public String getName() {
@@ -36,7 +45,14 @@ public abstract class Program implements Serializable {
 	}
 
 	public void setName(String name) {
-		Name = name;
+		try {
+			if(name.matches("[a-zA-z]+"))
+				Name = name;
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "The name not valide must be latters");
+			e.getMessage();
+		}
+		
 	}
 
 	public int getDuration() {
@@ -44,7 +60,14 @@ public abstract class Program implements Serializable {
 	}
 
 	public void setDuration(int duration) {
-		this.duration = duration;
+		try {
+			if(String.valueOf(duration).matches("[1-9]+"))
+				this.duration = duration;
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "The duration not valide must be number");
+			e.getMessage();
+		}
+		
 	}
 
 	public double getStartHour() {
@@ -59,8 +82,8 @@ public abstract class Program implements Serializable {
 				throw new Exception("start hoer not ligule");
 		}
 		catch (Exception e) {
-
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "The startHour not valide must be double");
+			e.getMessage();
 		}
 	}
 
@@ -73,7 +96,8 @@ public abstract class Program implements Serializable {
 			if(String.valueOf(endHour).matches("(\\d+\\.\\d+)"))
 				this.endHour = endHour;
 		}catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "The startHour not valide must be double");
+			e.getMessage();
 		}
 		
 	}

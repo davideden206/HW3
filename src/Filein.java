@@ -31,6 +31,7 @@ public class Filein {
 		} 
 		catch (IOException ioException)
 		{
+			
 			System.err.println("Error opening file. Terminating.");
 			System.exit(1);
 		} 

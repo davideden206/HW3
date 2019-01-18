@@ -3,6 +3,8 @@ package src;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Movie extends Program{
 
 	private double IMDB;
@@ -13,7 +15,7 @@ public class Movie extends Program{
 	public Movie(int id, String name, int duration, double startHour, double endHour, double iMDB,
 			int dayScheduled, ArrayList<String> stars, Languages leng,Genres geners) {
 		super(id, name, duration, startHour, endHour, geners);
-		IMDB = iMDB;
+		setIMDB(iMDB);
 		DayScheduled = dayScheduled;
 		setStars(stars);
 		this.leng = leng;
@@ -30,6 +32,7 @@ public class Movie extends Program{
 				IMDB = iMDB;
 			}
 			else
+				JOptionPane.showMessageDialog(null, "iMDB not ligule");
 				throw new Exception("iMDB not ligule");
 
 		}
@@ -62,6 +65,7 @@ public class Movie extends Program{
 			this.stars = stars;
 		}
 		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "aligle star name");
 			System.err.println("aligle star name");
 
 		}

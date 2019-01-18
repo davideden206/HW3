@@ -395,8 +395,10 @@ public class AddPogramsFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				 if(chackREG()) {
 				addProgram();
-				
+				 }else
+					 JOptionPane.showMessageDialog(null, "the programs not addited");
 			}
 		});
 
@@ -425,13 +427,13 @@ public class AddPogramsFrame extends JFrame {
 	
 	//Creates a program by type and data from the user
 	public void addProgram() {
-		
-		 pid =Integer.valueOf(programId.getText());
+		pid =Integer.valueOf(programId.getText());
 		 pname = programName.getText().toString();
 		 duration = Integer.valueOf(programDuration.getText());
 		 startHour = Double.valueOf(programStartHour.getText());
 		 endHour = Double.valueOf(programEndHour.getText());
 		 pgenres  =comboBox4.getSelectedItem().toString();
+		 
 		
 			
 		
@@ -530,6 +532,12 @@ public class AddPogramsFrame extends JFrame {
 	
 	//Performs a valid input test for user data
 	public boolean chackREG() {
+		String pid =programId.getText();
+		String pname = programName.getText().toString();
+		String duration = programDuration.getText();
+		String startHour = programStartHour.getText();
+		String endHour = programEndHour.getText();
+		String pgenres  =comboBox4.getSelectedItem().toString();
 		if(String.valueOf(pid).matches("[0-9]+")&&
 				pname.matches("[a-zA-z]+")&&
 				String.valueOf(duration).matches("[1-9]+")&&

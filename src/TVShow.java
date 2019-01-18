@@ -1,6 +1,8 @@
 package src;
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
 public class TVShow extends Program implements Serializable {
 
 
@@ -41,6 +43,7 @@ public class TVShow extends Program implements Serializable {
 				throw new Exception("aliugal name");
 		}
 		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "The guest not valide");
 			System.err.println(e.getMessage()+ ", you mast first and end char letars.");
 		}
 
