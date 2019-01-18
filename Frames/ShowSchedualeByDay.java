@@ -21,7 +21,7 @@ import src.Program;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
-public class ShowSchedualeByQuery extends JFrame {
+public class ShowSchedualeByDay extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -33,7 +33,7 @@ public class ShowSchedualeByQuery extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShowSchedualeByQuery frame = new ShowSchedualeByQuery();
+					ShowSchedualeByDay frame = new ShowSchedualeByDay();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,14 +45,14 @@ public class ShowSchedualeByQuery extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowSchedualeByQuery() {
+	public ShowSchedualeByDay() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel label = new JLabel("\u05D1\u05D7\u05E8 \u05D9\u05D5\u05DD \u05DC\u05D4\u05E6\u05D2\u05D4");
 		label.setBounds(325, 11, 87, 14);
 		contentPane.add(label);
@@ -60,33 +60,35 @@ public class ShowSchedualeByQuery extends JFrame {
 		choseDay.setSelectedIndex(0);
 		choseDay.setBounds(213, 8, 102, 20);
 		contentPane.add(choseDay);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 48, 422, 210);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		
+
+		//Initializes rows and columns that are empty in the table
 		Object[][] o = new Object[20][8];
 		for(int k = 0;k<20;k++) {
 			for(int j = 0;j<8;j++) {
 				o[k][j]=null;
 			}
 		}	
-		
+
+		//Sets the headings of each column in the table
 		DefaultTableModel model = new DefaultTableModel(o,
 				new String[] {
 						"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-				}
+		}
 				);
-		
+
 		table.setEnabled(false);
 		table.setModel(model);
-		
-		
+
+		//Initializes the programs on a particular day that the user has selected
 		choseDay.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,9 +97,9 @@ public class ShowSchedualeByQuery extends JFrame {
 				DefaultTableModel tmodel =  new DefaultTableModel(o,
 						new String[] {
 								"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-						}
+				}
 						);
-			
+
 				for (Program program : BCM.sch.getProgramsByDay(choseDay.getSelectedIndex())) {
 					tmodel.setValueAt(program.getName(),i++, choseDay.getSelectedIndex());
 				}
@@ -105,8 +107,8 @@ public class ShowSchedualeByQuery extends JFrame {
 
 			}
 		});
-		
-		
+
+
 
 	}
 }

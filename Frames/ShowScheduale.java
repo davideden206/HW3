@@ -51,50 +51,51 @@ public class ShowScheduale extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
+
+
 		JLabel label = new JLabel("\u05DB\u05DC \u05D4\u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05D1\u05E9\u05D1\u05D5\u05E2");
 		label.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label.setBounds(148, 11, 191, 21);
 		contentPane.add(label);
-		
-		
-		
+
+
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 48, 422, 210);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		
+
+		//Initializes rows and columns that are empty in the table
 		Object[][] o = new Object[50][8];
 		for(int k = 0;k<50;k++) {
 			for(int j = 0;j<8;j++) {
 				o[k][j]=null;
 			}
 		}	
-		
+		//		Sets the headings of each column in the table
 		DefaultTableModel model = new DefaultTableModel(o,
 				new String[] {
 						"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-				}
+		}
 				);
-		
+
 		table.setEnabled(false);
 		table.setModel(model);
-		
-		
-		
-				
-				DefaultTableModel tmodel =  new DefaultTableModel(o,
-						new String[] {
-								"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-						}
-						);
+
+
+
+		//Sets the headings of each column in the table
+		DefaultTableModel tmodel =  new DefaultTableModel(o,
+				new String[] {
+						"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+		}
+				);
 		int y=0;
-		
+		//Initializes the table according to the weekly programs
 		while(y<7) {
 			int i =0;
 			for (Program program : BCM.sch.getProgramsByDay(y)) {
@@ -102,15 +103,15 @@ public class ShowScheduale extends JFrame {
 			}
 			y++;
 		}	
-				table.setModel(tmodel);
+		table.setModel(tmodel);
 
-			}
-			
-			
-	
-		
-		
+	}
 
-	
+
+
+
+
+
+
 
 }

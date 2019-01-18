@@ -224,7 +224,7 @@ public class AddPogramsFrame extends JFrame {
 		
 			
 			
-		
+		//Adjusts the type of program to input by selecting the program type of the user
 		comboBoxType.addItemListener(new ItemListener() {
 
 			@Override
@@ -387,7 +387,7 @@ public class AddPogramsFrame extends JFrame {
 		getContentPane().add(new JScrollPane());
 		
 		
-		
+		//Adds a program after clicking the button
 		btnAdd.addActionListener(new ActionListener() {
 			
 			@Override
@@ -400,6 +400,7 @@ public class AddPogramsFrame extends JFrame {
 
 	}
 
+	//Resets the clipboard programs to re-select before booting by type
 	public void clear() {
 		item1.setVisible(false);
 		lable1.setVisible(false);
@@ -420,6 +421,7 @@ public class AddPogramsFrame extends JFrame {
 		starsList2.setVisible(false);
 	}
 	
+	//Creates a program by type and data from the user
 	public void addProgram() {
 		
 		 pid =Integer.valueOf(programId.getText());
@@ -524,6 +526,7 @@ public class AddPogramsFrame extends JFrame {
 		return -2;
 	}
 	
+	//Performs a valid input test for user data
 	public boolean chackREG() {
 		if(String.valueOf(pid).matches("[0-9]+")&&
 				pname.matches("[a-zA-z]+")&&

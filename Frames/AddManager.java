@@ -76,6 +76,8 @@ public class AddManager extends JFrame {
 		JButton btnAddManager = new JButton("\u05D4\u05D5\u05E1\u05E3 \u05DE\u05E0\u05D4\u05DC");
 		btnAddManager.setBounds(154, 194, 116, 25);
 		contentPane.add(btnAddManager);
+		
+		//Obtains a valid username and password from the user and creates a new administrator
 		btnAddManager.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,7 +97,7 @@ public class AddManager extends JFrame {
 
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "All details must be entered");
+					JOptionPane.showMessageDialog(null, "All information must be entered correctly ");
 				}
 			}
 		}

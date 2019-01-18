@@ -55,6 +55,8 @@ public class Menu extends JFrame {
 		JButton btnSaveExit = new JButton("\u05E9\u05DE\u05D5\u05E8 \u05D5\u05E6\u05D0");
 		btnSaveExit.setBounds(12, 202, 115, 38);
 		contentPane.add(btnSaveExit);
+		
+		//When you click the button, it exits the system and saves the data
 		btnSaveExit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -71,6 +73,7 @@ public class Menu extends JFrame {
 		disply_schduale.setBounds(242, 32, 178, 23);
 		contentPane.add(disply_schduale);
 		
+		//When you click the button, a page displays the weekly programs
 		disply_schduale.addActionListener(new ActionListener() {
 			
 			@Override
@@ -86,11 +89,12 @@ public class Menu extends JFrame {
 		displayByDay.setBounds(242, 68, 178, 23);
 		contentPane.add(displayByDay);
 		
+		//Clicking the button moves to the program display page by day
 		displayByDay.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ShowSchedualeByQuery show = new ShowSchedualeByQuery();
+				ShowSchedualeByDay show = new ShowSchedualeByDay();
 				show.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				show.setVisible(true);
 				
@@ -122,6 +126,7 @@ public class Menu extends JFrame {
 			
 			updat_delet_program.setVisible(true);
 
+		//By pressing the button moves to the delete page or program update
 		updat_delet_program.addActionListener(new ActionListener() {
 			
 			@Override
@@ -134,6 +139,8 @@ public class Menu extends JFrame {
 		});
 
 		addProgram.setVisible(true);
+		
+		//Clicking the button moves to the page of adding a new program
 		addProgram.addActionListener(new ActionListener() {
 			
 			@Override
@@ -147,6 +154,7 @@ public class Menu extends JFrame {
 		}
 		else {
 			btnAddManager.setVisible(true);
+			//Clicking the button moves to the Add New Manager page
 			btnAddManager.addActionListener(new ActionListener() {
 				
 				@Override
@@ -161,7 +169,7 @@ public class Menu extends JFrame {
 			
 			display_by_price.setVisible(true);
 			
-		
+		//When you click the button, you move to the program display page based on the price a user enters	
 		display_by_price.addActionListener(new ActionListener() {
 			
 			@Override

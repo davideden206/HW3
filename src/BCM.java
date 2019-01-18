@@ -15,52 +15,63 @@ import Frames.LogINFrame;
 
 
 public class BCM  {
-	
-	
-	
+
+
+
 	public static ArrayList<Manager> managers = new ArrayList<>();
 	public ArrayList<Program> programs;
 	public static Schedule sch = new Schedule();
 	public static Schedule newsch = new Schedule();
-	
+
 	public static void main(String[] args) throws Exception {
-		
-		
+
+		/*
+		 * mangers of the system
+		 *  id=203898309, Name=eden 
+ 			id=203589453, Name=yosi 
+ 			id=456898733, Name=ram 
+ 			id=364548975, Name=dan 
+ 			id=321456518, Name=yishai 
+ 			id=123585463, Name=ran 
+ 			
+ 			admin
+ 			id=admin , name =admin
+ 			id=ADMIN , name =ADMIN
+		 */
+
 		OpenSer.openFile();
 		sch = OpenSer.readRecords();
 		OpenSer.closeFile();
-		
 		saveSchedule();
-		
 
 		System.out.println(sch);
-		
-	// end mane	
-		
-		
 
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
+		// end mane	
 
-						LogINFrame window = new LogINFrame();
-						window.frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+
+					LogINFrame window = new LogINFrame();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			});
+			}
+		});
 	}
-	
+
 	// Mutates for add program
-	
+
 	public static void saveSchedule() {
-	FileOut.openFileSer();
-	FileOut.addRecordsSer(sch.ScheduletoArry());
-	FileOut.closeFileSer();
+		FileOut.openFileSer();
+		FileOut.addRecordsSer(sch.ScheduletoArry());
+		FileOut.closeFileSer();
 	}
-	
-	
+
+
 	public static void addNews(Schedule sch)
 	{
 		for (News n: Filein.news)
@@ -109,10 +120,10 @@ public class BCM  {
 			}
 		}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

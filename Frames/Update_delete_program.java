@@ -139,6 +139,8 @@ public class Update_delete_program extends JFrame {
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)list.getCellRenderer();  
 		renderer.setHorizontalAlignment(JLabel.CENTER);  
 		
+		//When the user marks an ID card of a program and presses the 
+		//button the program is deleted and the data is saved
 		btnDelete.addActionListener(new ActionListener() {
 			
 			@Override
@@ -162,6 +164,8 @@ public class Update_delete_program extends JFrame {
 			}
 		});
 		
+		//When the user signs a program ID and presses the button the program is deleted
+		//and the user goes to the Add Program page where he updates the program
 		btnUpdate.addActionListener(new ActionListener() {
 			
 			@Override
@@ -170,6 +174,7 @@ public class Update_delete_program extends JFrame {
 				AddPogramsFrame ap = new AddPogramsFrame(Menu.maneger, BCM.sch.getProgram(id));
 				int n = JOptionPane.showConfirmDialog(null, BCM.sch.getProgram(id).toString()+"\n you are shure that you"
 						+ " want to update this program","this is the program that yo want to update",JOptionPane.YES_NO_OPTION);
+				//yes=0  no=1=(else)
 				if(n==0) {
 				BCM.sch.deleteProgram(id);
 				ap.setVisible(true);

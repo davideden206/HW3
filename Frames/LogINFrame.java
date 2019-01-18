@@ -75,6 +75,9 @@ public class LogINFrame extends JFrame {
 
 		JButton button = new JButton("\u05D4\u05D9\u05DB\u05E0\u05E1");
 		button.setBounds(108, 146, 97, 25);
+		
+		//Checks whether the username and password are correct and are in the system and if so 
+		//entered by the Admin user type or Maneger
 		button.addActionListener(new ActionListener() {
 
 			@Override
@@ -102,10 +105,6 @@ public class LogINFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "the user it not exsist");
 				}
 
-
-
-
-
 			}
 				else {
 					JOptionPane.showMessageDialog(null, "you need entr name whit only english Letters and password with only number");
@@ -118,6 +117,7 @@ public class LogINFrame extends JFrame {
 		
 	}
 	
+	//Checks if a system administrator exists by user name and password
 	public boolean checkUsername(int id,String name) {
 		for (Manager m: BCM.managers) {
 			if (m.getId() == id && m.getName().equals(name)) {
@@ -126,6 +126,7 @@ public class LogINFrame extends JFrame {
 		}
 		return false;
 	}
+	//Returns a manager by ID
 	public Manager getManager(int id) {
 		for (Manager m: BCM.managers){
 			if (m.getId()==id) {
