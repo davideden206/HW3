@@ -447,11 +447,12 @@ public class AddPogramsFrame extends JFrame {
 				m.addProgramByManger(tv, BCM.sch);
 				BCM.saveSchedule();
 				dispose();
+				JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "The TVShow has not been added");
-				e.printStackTrace();
+				
 			}
-			JOptionPane.showMessageDialog(null, "TVShow add Succeeded");
+			
 			
 		}
 		
@@ -473,11 +474,12 @@ public class AddPogramsFrame extends JFrame {
 			m.addProgramByManger(mo, BCM.sch);
 			BCM.saveSchedule();
 			dispose();
+			JOptionPane.showMessageDialog(null, "Movie add Succeeded");
 		}catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "The Movie has not been added");
-			e.printStackTrace();
+			
 		}
-		JOptionPane.showMessageDialog(null, "Movie add Succeeded");
+		
 		}
 		
 		if (comboBoxType.getSelectedItem().toString().equals("Series")) {
@@ -496,11 +498,12 @@ public class AddPogramsFrame extends JFrame {
 				m.addProgramByManger(ss, BCM.sch);
 				BCM.saveSchedule();
 				dispose();
+				JOptionPane.showMessageDialog(null, "Series add Succeeded");
 			}catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "The Series has not been added");
-				e.printStackTrace();
+				
 			}
-			JOptionPane.showMessageDialog(null, "Series add Succeeded");
+			
 		}
 		
 		if (comboBoxType.getSelectedItem().toString().equals("News")) {
@@ -510,10 +513,11 @@ public class AddPogramsFrame extends JFrame {
 				m.addProgramByManger(n, BCM.sch);
 				BCM.saveSchedule();
 				dispose();
+				JOptionPane.showMessageDialog(null, "News add Succeeded");
 			}catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "The News has not been added");
-				e.printStackTrace();
-			}JOptionPane.showMessageDialog(null, "News add Succeeded");
+				
+			}
 		}
 	}
 	

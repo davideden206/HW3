@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame {
-	static Manager maneger;
+	public static Manager maneger;
 	private JPanel contentPane;
 	private JButton btnAddManager;
 
@@ -26,6 +26,7 @@ public class Menu extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

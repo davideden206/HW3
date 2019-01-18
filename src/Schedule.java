@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Frames.Menu;
+
 public class Schedule {
 	
 	 ArrayList<Program>[] WeeklySchedule;
@@ -16,7 +18,7 @@ public class Schedule {
 		}
 	}
 	
-	 void addProgramToArray(Program p,int day)  {
+	 void addProgramToArray(Program p,int day)throws Exception  {
 		 try {
 			 ArrayList<Program> a =new ArrayList<>();
 				a = this.WeeklySchedule[day-1];
@@ -50,8 +52,12 @@ public class Schedule {
 			}
 				System.out.println(p.toString());
 		} catch (Exception e) {
+			if(Menu.maneger!=null) {
 			JOptionPane.showMessageDialog(null, "The programs collide");
+			 throw new Exception();
+			}
 			System.err.println(e.getMessage()+"The programs collide");
+			
 		}
 		
 		}

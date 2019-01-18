@@ -44,7 +44,6 @@ public class OpenSer {
 				{
 					Program p = (Program)o;
 					Manager m = p.getManager();
-					System.err.print("### "+p.toString());
 					m.addProgramByManger(p, SchSer);
 					//SchSer.addProgram(p);
 				}

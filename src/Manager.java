@@ -2,6 +2,10 @@ package src;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
+
+import Frames.Menu;
+
 public class Manager implements Serializable{
 
 	private int id;
@@ -46,8 +50,8 @@ public class Manager implements Serializable{
 			//System.out.println(p.toString());
 
 		}catch (Exception e) {
-			System.out.println();
 			System.err.println(e.getMessage()+"The programs collide");
+			throw new Exception();
 		}
 	}
 
