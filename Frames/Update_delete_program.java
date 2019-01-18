@@ -152,10 +152,10 @@ public class Update_delete_program extends JFrame {
 					BCM.sch.deleteProgram(id);
 					BCM.saveSchedule();
 					Update_delete_program u = new Update_delete_program();
-					u.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					u.dispose();
 					JOptionPane.showMessageDialog(null, "the program was deleted");
 					u.setVisible(true);
+					u.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "the program not deleted");

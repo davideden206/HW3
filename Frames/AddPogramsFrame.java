@@ -232,7 +232,7 @@ public class AddPogramsFrame extends JFrame {
 				String s = e.getItem().toString();
 				if(s=="TVShow") {
 					clear();
-					comboBox_1 = new JComboBox<>(DayOfWeek.values());
+					comboBox_1 = new JComboBox<>(DaysOfTheWeek.values());
 					comboBox_1.setBounds(73, 110, 102, 20);
 					contentPane.add(comboBox_1);
 					comboBox_1.setVisible(true);
@@ -265,7 +265,7 @@ public class AddPogramsFrame extends JFrame {
 					lable1.setVisible(true);
 					lable2.setVisible(true);
 					lable4.setVisible(true);
-					comboBox_2 = new JComboBox<>(DayOfWeek.values());
+					comboBox_2 = new JComboBox<>(DaysOfTheWeek.values());
 					comboBox_2.setBounds(73, 138, 102, 20);
 					contentPane.add(comboBox_2);
 					comboBox_3 = new JComboBox<>(Languages.values());
@@ -357,6 +357,7 @@ public class AddPogramsFrame extends JFrame {
 		contentPane.add(lable5);
 
 		comboBox_1 = new JComboBox();
+		comboBox_1.setSelectedIndex(-1);
 		comboBox_1.setBounds(73, 110, 102, 20);
 		contentPane.add(comboBox_1);
 		comboBox_1.setVisible(false);
@@ -372,6 +373,7 @@ public class AddPogramsFrame extends JFrame {
 		comboBox_3.setVisible(false);
 		
 		 comboBox4 = new JComboBox(Genres.values());
+		 comboBox4.setSelectedIndex(-1);
 		comboBox4.setBounds(289, 250, 86, 20);
 		contentPane.add(comboBox4);
 		

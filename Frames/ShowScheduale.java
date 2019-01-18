@@ -46,7 +46,7 @@ public class ShowScheduale extends JFrame {
 	 */
 	public ShowScheduale() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 850, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,13 +55,13 @@ public class ShowScheduale extends JFrame {
 
 		JLabel label = new JLabel("\u05DB\u05DC \u05D4\u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05D1\u05E9\u05D1\u05D5\u05E2");
 		label.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label.setBounds(148, 11, 191, 21);
+		label.setBounds(338, 11, 191, 21);
 		contentPane.add(label);
 
 
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 48, 422, 210);
+		scrollPane.setBounds(10, 48, 800, 210);
 		contentPane.add(scrollPane);
 
 		table = new JTable();

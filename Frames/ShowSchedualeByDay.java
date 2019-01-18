@@ -20,6 +20,7 @@ import src.Program;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class ShowSchedualeByDay extends JFrame {
 
@@ -47,22 +48,23 @@ public class ShowSchedualeByDay extends JFrame {
 	 */
 	public ShowSchedualeByDay() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 850, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel label = new JLabel("\u05D1\u05D7\u05E8 \u05D9\u05D5\u05DD \u05DC\u05D4\u05E6\u05D2\u05D4");
-		label.setBounds(325, 11, 87, 14);
+		label.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label.setBounds(416, 14, 122, 14);
 		contentPane.add(label);
 		JComboBox choseDay = new JComboBox<>(DaysOfTheWeek.values());//
 		choseDay.setSelectedIndex(0);
-		choseDay.setBounds(213, 8, 102, 20);
+		choseDay.setBounds(304, 11, 102, 20);
 		contentPane.add(choseDay);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 48, 422, 210);
+		scrollPane.setBounds(10, 48, 800, 210);
 		contentPane.add(scrollPane);
 
 		table = new JTable();

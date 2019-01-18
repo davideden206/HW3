@@ -18,7 +18,7 @@ public abstract class Program implements Serializable {
 		this.id = id;
 		Name = name;
 		this.duration = duration;
-		this.endHour = endHour;
+		this.setEndHour(endHour);
 		this.setStartHour(startHour);
 		this.geners = geners;
 	}
@@ -53,7 +53,7 @@ public abstract class Program implements Serializable {
 
 	public void setStartHour(double startHour) {
 		try {
-			if(startHour<this.getEndHour())
+			if(startHour<this.getEndHour()&&String.valueOf(endHour).matches("(\\d+\\.\\d+)"))
 				this.startHour = startHour;
 			else
 				throw new Exception("start hoer not ligule");
@@ -69,7 +69,13 @@ public abstract class Program implements Serializable {
 	}
 
 	public void setEndHour(double endHour) {
-		this.endHour = endHour;
+		try {
+			if(String.valueOf(endHour).matches("(\\d+\\.\\d+)"))
+				this.endHour = endHour;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	public Manager getManager() {
