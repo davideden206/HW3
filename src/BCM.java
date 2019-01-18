@@ -26,7 +26,7 @@ public class BCM  {
 	public static void main(String[] args) throws Exception {
 
 		/*
-		 * mangers of the system
+		 * mangers of the systemm
 		 *  id=203898309, Name=eden 
  			id=203589453, Name=yosi 
  			id=456898733, Name=ram 
