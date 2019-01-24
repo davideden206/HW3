@@ -17,7 +17,7 @@ public class Movie extends Program{
 		super(id, name, duration, startHour, endHour, geners);
 		setIMDB(iMDB);
 		DayScheduled = dayScheduled;
-		setStars(stars);
+		this.stars = stars;
 		this.leng = leng;
 	}
 
@@ -31,10 +31,10 @@ public class Movie extends Program{
 			{
 				IMDB = iMDB;
 			}
-			else
+			else {
 				JOptionPane.showMessageDialog(null, "iMDB not ligule");
 				throw new Exception("iMDB not ligule");
-
+			}
 		}
 		catch (Exception e) {
 
