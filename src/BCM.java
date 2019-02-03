@@ -46,6 +46,7 @@ public class BCM  {
 				
 				saveSchedule();
 				
+				
 
 				System.out.println(sch);
 				System.out.println("<<<<<<<< the managers >>>>>>>>");
@@ -72,7 +73,12 @@ public class BCM  {
 			 */
 			public static void saveSchedule() {
 			FileOut.openFileSer();
+			
 			FileOut.addRecordsSer(sch.ScheduletoArry());
+			//DB.openDB();
+			DB.addRecordsDB(sch.ScheduletoArry());
+			//DB.readRecords();
+			DB.closeDB();
 			FileOut.closeFileSer();
 			}
 			
