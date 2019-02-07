@@ -79,7 +79,7 @@ public class BCM  {
 			FileOut.openFileSer();
 			
 			FileOut.addRecordsSer(sch.ScheduletoArry());
-			DB.openDB();
+			DB.ope nDB();
 			DB.addRecordsDB(sch);
 			//DB.readRecords();
 			DB.closeDB();

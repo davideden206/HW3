@@ -29,7 +29,7 @@ public class DB {
 	private static PreparedStatement delete;
 
 
-	
+
 
 	public static void openDB() {
 		try {
@@ -53,10 +53,22 @@ public class DB {
 
 	public static void addRecordsDB(Schedule sc)
 	{
-		
+
 		try {
-			delete = connection.prepareStatement("DELETE FROM Manager");
 			
+			// delete all old DB.
+			delete = connection.prepareStatement("DELETE FROM Manager");
+			delete.execute();
+
+			delete = connection.prepareStatement("DELETE FROM Movie");
+			delete.execute();
+			delete = connection.prepareStatement("DELETE FROM News");
+			delete.execute();
+			delete = connection.prepareStatement("DELETE FROM Series");
+			delete.execute();
+			delete = connection.prepareStatement("DELETE FROM TVShow");
+			delete.execute();
+
 			insertManager = connection.prepareStatement(
 					"INSERT INTO Manager " + 
 							"(id, name) " + 
@@ -76,126 +88,116 @@ public class DB {
 			}
 
 		}
-		
+
 		for (int i =0;i<7;i++ )
 		{
 			int day = i+1;
-			
 			ArrayList<Program> pro = sc.WeeklySchedule[i];
-		
-		
-
-		try {
-			connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=HomeWork4DB;integratedSecurity=true;");
-			
-			
-			delete = connection.prepareStatement("DELETE FROM Movie");
-			delete = connection.prepareStatement("DELETE FROM News");
-			delete = connection.prepareStatement("DELETE FROM Series");
-			delete = connection.prepareStatement("DELETE FROM TVShow");
-			
-			
-			
-
-			insertMovie = connection.prepareStatement(
-					"INSERT INTO Movie " + 
-							"(id, name,duration,startHour,endHour,iMDB,dayScheduled,Languages,Genres) " + 
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-			insertNews = connection.prepareStatement(
-					"INSERT INTO News " + 
-							"(id, name,duration,startHour,endHour,Genres,broadcaster) " + 
-					"VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-			insertSeries = connection.prepareStatement(
-					"INSERT INTO Series " + 
-							"(id, name,duration,startHour,endHour,Genres,dayScheduled) " + 
-					"VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-			insertTVShow = connection.prepareStatement(
-					"INSERT INTO TVShow " + 
-							"(id, name,duration,startHour,endHour,dayScheduled,guest,host,Genres) " + 
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		
-		for (Program p : pro) 
-		{
-			if(p instanceof Movie) {
-				Movie mov = (Movie)p;
-				try {
-					insertMovie.setInt(1, mov.getId());
-					insertMovie.setString(2, mov.getName());
-					insertMovie.setInt(3, mov.getDuration());
-					insertMovie.setDouble(4, mov.getStartHour());
-					insertMovie.setDouble(5, mov.getEndHour());
-					insertMovie.setDouble(6, mov.getIMDB());
-					insertMovie.setInt(7, day);
-					insertMovie.setString(8, mov.getLeng().toString());
-					insertMovie.setString(9, mov.getGeners().toString());
-					insertMovie.executeUpdate(); 
-				}catch (Exception e) {
-					// TODO: handle exception
-					System.out.println("CRASH");
-				}
-			} 
 
 
-			if(p instanceof Series) {
-				Series s = (Series)p;
-				try {
-					insertSeries.setInt(1, s.getId());
-					insertSeries.setString(2, s.getName());
-					insertSeries.setInt(3, s.getDuration());
-					insertSeries.setDouble(4, s.getStartHour());
-					insertSeries.setDouble(5, s.getEndHour());
-					insertSeries.setString(6, s.getGeners().toString());
-					insertSeries.setInt(7, day);
-					insertSeries.executeUpdate(); 
-				}catch (Exception e) {
-					System.out.println("CRASH");
-				}
+
+			try {
+				connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=HomeWork4DB;integratedSecurity=true;");
+				
+				insertMovie = connection.prepareStatement(
+						"INSERT INTO Movie " + 
+								"(id, name,duration,startHour,endHour,iMDB,dayScheduled,Languages,Genres) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+				insertNews = connection.prepareStatement(
+						"INSERT INTO News " + 
+								"(id, name,duration,startHour,endHour,Genres,broadcaster) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+				insertSeries = connection.prepareStatement(
+						"INSERT INTO Series " + 
+								"(id, name,duration,startHour,endHour,Genres,dayScheduled) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+				insertTVShow = connection.prepareStatement(
+						"INSERT INTO TVShow " + 
+								"(id, name,duration,startHour,endHour,dayScheduled,guest,host,Genres) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 
-			if(p instanceof News) {
-				News n = (News)p;
-				try {
-					insertNews.setInt(1, n.getId());
-					insertNews.setString(2, n.getName());
-					insertNews.setInt(3, n.getDuration());
-					insertNews.setDouble(4, n.getStartHour());
-					insertNews.setDouble(5, n.getEndHour());
-					insertNews.setString(6, n.getGeners().toString());
-					insertNews.setString(7, n.getBroadcaster());
-					insertNews.setInt(8, day);
-					insertNews.executeUpdate(); 
-				}catch (Exception e) {
-					System.out.println("CRASH");
-				}
-			}
 
-			if(p instanceof TVShow) {
-				TVShow tv = (TVShow)p;
-				try {
-					insertTVShow.setInt(1, tv.getId());
-					insertTVShow.setString(2, tv.getName());
-					insertTVShow.setInt(3, tv.getDuration());
-					insertTVShow.setDouble(4, tv.getStartHour());
-					insertTVShow.setDouble(5, tv.getEndHour());
-					insertTVShow.setInt(6, day);
-					insertTVShow.setString(7, tv.getGuest());
-					insertTVShow.setString(8, tv.getHost());
-					insertTVShow.setString(9, tv.getGeners().toString());
-					insertTVShow.executeUpdate(); 
-				}catch (Exception e) {
-					System.out.println("CRASH");
-				}
-			}
+			for (Program p : pro) 
+			{
+				if(p instanceof Movie) {
+					Movie mov = (Movie)p;
+					try {
+						insertMovie.setInt(1, mov.getId());
+						insertMovie.setString(2, mov.getName());
+						insertMovie.setInt(3, mov.getDuration());
+						insertMovie.setDouble(4, mov.getStartHour());
+						insertMovie.setDouble(5, mov.getEndHour());
+						insertMovie.setDouble(6, mov.getIMDB());
+						insertMovie.setInt(7, day);
+						insertMovie.setString(8, mov.getLeng().toString());
+						insertMovie.setString(9, mov.getGeners().toString());
+						insertMovie.executeUpdate(); 
+					}catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("CRASH");
+					}
+				} 
 
-		}
+
+				if(p instanceof Series) {
+					Series s = (Series)p;
+					try {
+						insertSeries.setInt(1, s.getId());
+						insertSeries.setString(2, s.getName());
+						insertSeries.setInt(3, s.getDuration());
+						insertSeries.setDouble(4, s.getStartHour());
+						insertSeries.setDouble(5, s.getEndHour());
+						insertSeries.setString(6, s.getGeners().toString());
+						insertSeries.setInt(7, day);
+						insertSeries.executeUpdate(); 
+					}catch (Exception e) {
+						System.out.println("CRASH");
+					}
+				}
+
+				if(p instanceof News) {
+					News n = (News)p;
+					try {
+						insertNews.setInt(1, n.getId());
+						insertNews.setString(2, n.getName());
+						insertNews.setInt(3, n.getDuration());
+						insertNews.setDouble(4, n.getStartHour());
+						insertNews.setDouble(5, n.getEndHour());
+						insertNews.setString(6, n.getGeners().toString());
+						insertNews.setString(7, n.getBroadcaster());
+						insertNews.setInt(8, day);
+						insertNews.executeUpdate(); 
+					}catch (Exception e) {
+						System.out.println("CRASH");
+					}
+				}
+
+				if(p instanceof TVShow) {
+					TVShow tv = (TVShow)p;
+					try {
+						insertTVShow.setInt(1, tv.getId());
+						insertTVShow.setString(2, tv.getName());
+						insertTVShow.setInt(3, tv.getDuration());
+						insertTVShow.setDouble(4, tv.getStartHour());
+						insertTVShow.setDouble(5, tv.getEndHour());
+						insertTVShow.setInt(6, day);
+						insertTVShow.setString(7, tv.getGuest());
+						insertTVShow.setString(8, tv.getHost());
+						insertTVShow.setString(9, tv.getGeners().toString());
+						insertTVShow.executeUpdate(); 
+					}catch (Exception e) {
+						System.out.println("CRASH");
+					}
+				}
+
+			}
 		}
 
 	}
