@@ -45,6 +45,7 @@ public class BCM  {
 				OpenSer.closeFile();
 				
 				saveSchedule();
+				sch = DB.readRecords();
 				
 				
 				
