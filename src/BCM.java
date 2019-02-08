@@ -2,14 +2,10 @@ package src;
 
 
 import java.awt.EventQueue;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-import javax.swing.plaf.synth.SynthStyle;
+
 
 import Frames.LogINFrame;
 
@@ -40,6 +36,7 @@ public class BCM  {
 		 */
 
 		// open and lobe ser file
+		
 				OpenSer.openFile();
 				
 				sch = OpenSer.readRecords();
@@ -78,14 +75,14 @@ public class BCM  {
 			 * save the Schedole in Ser file
 			 */
 			public static void saveSchedule() {
-			FileOut.openFileSer();
+			//FileOut.openFileSer();
 			
 			//FileOut.addRecordsSer(sch.ScheduletoArry());
 			DB.openDB();
 			DB.addRecordsDB(sch);
 			//DB.readRecords();
 			//DB.closeDB();
-			FileOut.closeFileSer();
+			//FileOut.closeFileSer();
 			}
 			
 		}

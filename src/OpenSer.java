@@ -1,6 +1,6 @@
 package src;
 import java.io.EOFException;
-import java.io.File;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
@@ -33,8 +33,10 @@ public class OpenSer {
 
 		try 
 		{
+			
 			while (true) // loop until there is an EOFException
 			{
+				System.out.println(input.available());
 				Object o = (Object)input.readObject();
 				if(o instanceof Manager) {
 					Manager m = (Manager)o;
