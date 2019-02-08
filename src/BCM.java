@@ -80,7 +80,7 @@ public class BCM  {
 			public static void saveSchedule() {
 			FileOut.openFileSer();
 			
-			FileOut.addRecordsSer(sch.ScheduletoArry());
+			//FileOut.addRecordsSer(sch.ScheduletoArry());
 			DB.openDB();
 			DB.addRecordsDB(sch);
 			//DB.readRecords();
