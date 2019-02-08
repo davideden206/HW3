@@ -43,6 +43,7 @@ public class OpenSer {
 				}
 				if(o instanceof Program)
 				{
+					
 					Program p = (Program)o;
 					Manager m = p.getManager();
 					m.addProgramByManger(p, SchSer);

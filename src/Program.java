@@ -46,7 +46,7 @@ public abstract class Program implements Serializable {
 
 	public void setName(String name) {
 		try {
-			if(name.matches("[a-zA-z]+\\s[0-9]+"))
+			if(name.matches("[a-zA-z]+.*"))
 				Name = name;
 		}catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "The name not valide must be latters");
