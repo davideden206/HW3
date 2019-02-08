@@ -249,7 +249,7 @@ public class DB {
 						,a
 						,Languages.valueOf(resultSetMovie.getString(9))
 						,Genres.valueOf(resultSetMovie.getString(10)));
-				mo.setManager(Manager.getManagerById(resultSetMovie.getInt(11)));
+				mo.setManager(getManagerById(resultSetMovie.getInt(11)));
 			}
 			
 			Program p =mo;
@@ -268,9 +268,10 @@ public class DB {
 						,resultSetNews.getDouble(5)
 						,Genres.valueOf(resultSetNews.getString(6))
 						,resultSetNews.getString(7));
-				n.setManager(Manager.getManagerById(resultSetNews.getInt(8)));
+				n.setManager(getManagerById(resultSetNews.getInt(8)));
 
-			} Program p2 =n;
+			}
+			Program p2 =n;
 			Manager m2 = p2.getManager();
 			m2.addProgramByManger(p2, SchSer);	
 
@@ -286,7 +287,7 @@ public class DB {
 						,resultSetSeries.getDouble(5)
 						,Genres.valueOf(resultSetSeries.getString(6))
 						);
-				s.setManager(Manager.getManagerById(resultSetSeries.getInt(7)));
+				s.setManager(getManagerById(resultSetSeries.getInt(7)));
 			} Program p3 =s;
 			Manager m3 = p3.getManager();
 			m3.addProgramByManger(p3, SchSer);
@@ -306,7 +307,7 @@ public class DB {
 						,resultSetTVShow.getString(8)
 						,Genres.valueOf(resultSetTVShow.getString(9))
 						);
-				tv.setManager(Manager.getManagerById(resultSetTVShow.getInt(10)));
+				tv.setManager(getManagerById(resultSetTVShow.getInt(10)));
 			} Program p4 =tv;
 			Manager m4 = p4.getManager();
 			m4.addProgramByManger(p4, SchSer);
@@ -340,6 +341,15 @@ public class DB {
 			// TODO: handle exception
 		}
 
+	}
+	
+	public static Manager getManagerById(int id) {
+		for (Manager m : BCM.managers) {
+			if(m.getId()==id) {
+				return m;
+			}
+		}
+		return null;
 	}
 
 }

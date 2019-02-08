@@ -60,14 +60,7 @@ public class Manager implements Serializable{
 		return " id=" + id + ", Name=" + Name + " ";
 	}
 
-	public static Manager getManagerById(int id) {
-		for (Manager m : BCM.managers) {
-			if(m.getId()==id) {
-				return m;
-			}
-		}
-		return null;
-	}
+	
 
 
 }

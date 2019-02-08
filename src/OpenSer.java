@@ -36,7 +36,6 @@ public class OpenSer {
 			
 			while (true) // loop until there is an EOFException
 			{
-				System.out.println(input.available());
 				Object o = (Object)input.readObject();
 				if(o instanceof Manager) {
 					Manager m = (Manager)o;
