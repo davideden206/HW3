@@ -41,6 +41,7 @@ public class BCM  {
 
 		// open and lobe ser file
 				OpenSer.openFile();
+				
 				sch = OpenSer.readRecords();
 				OpenSer.closeFile();
 				
@@ -80,10 +81,10 @@ public class BCM  {
 			FileOut.openFileSer();
 			
 			FileOut.addRecordsSer(sch.ScheduletoArry());
-			DB.ope nDB();
+			DB.openDB();
 			DB.addRecordsDB(sch);
 			//DB.readRecords();
-			DB.closeDB();
+			//DB.closeDB();
 			FileOut.closeFileSer();
 			}
 			

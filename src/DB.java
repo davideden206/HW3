@@ -34,17 +34,7 @@ public class DB {
 	public static void openDB() {
 		try {
 			connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=HomeWork4DB;integratedSecurity=true;");
-
 			System.out.println("CONNECTED");
-			statement = connection.createStatement();
-
-			// 3. Execute SQL query
-			resultSet = statement.executeQuery("SELECT * FROM Manager");
-
-			// 4. Process the result set
-			while (resultSet.next()) {
-				System.out.println(resultSet.getInt("ID") + ", " + resultSet.getString("Name"));
-			}
 
 		}catch (Exception e) {
 			System.err.println("Error opening DB. Terminating.");
@@ -101,23 +91,23 @@ public class DB {
 				
 				insertMovie = connection.prepareStatement(
 						"INSERT INTO Movie " + 
-								"(id, name,duration,startHour,endHour,iMDB,dayScheduled,Languages,Genres) " + 
-						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+								"(id, name,duration,startHour,endHour,iMDB,dayScheduled,Languages,Genres,idManager) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 				insertNews = connection.prepareStatement(
 						"INSERT INTO News " + 
-								"(id, name,duration,startHour,endHour,Genres,broadcaster) " + 
-						"VALUES (?, ?, ?, ?, ?, ?, ?)");
+								"(id, name,duration,startHour,endHour,Genres,broadcaster,dayScheduled,idManager) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 				insertSeries = connection.prepareStatement(
 						"INSERT INTO Series " + 
-								"(id, name,duration,startHour,endHour,Genres,dayScheduled) " + 
-						"VALUES (?, ?, ?, ?, ?, ?, ?)");
+								"(id, name,duration,startHour,endHour,Genres,dayScheduled,idManager) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 				insertTVShow = connection.prepareStatement(
 						"INSERT INTO TVShow " + 
-								"(id, name,duration,startHour,endHour,dayScheduled,guest,host,Genres) " + 
-						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+								"(id, name,duration,startHour,endHour,dayScheduled,guest,host,Genres,idManager) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -138,10 +128,11 @@ public class DB {
 						insertMovie.setInt(7, day);
 						insertMovie.setString(8, mov.getLeng().toString());
 						insertMovie.setString(9, mov.getGeners().toString());
+						insertMovie.setInt(10, mov.getManager().getId());
 						insertMovie.executeUpdate(); 
 					}catch (Exception e) {
 						// TODO: handle exception
-						System.out.println("CRASH");
+						System.out.println("CRASH Movie");
 					}
 				} 
 
@@ -156,9 +147,10 @@ public class DB {
 						insertSeries.setDouble(5, s.getEndHour());
 						insertSeries.setString(6, s.getGeners().toString());
 						insertSeries.setInt(7, day);
+						insertSeries.setInt(8, s.getManager().getId());
 						insertSeries.executeUpdate(); 
 					}catch (Exception e) {
-						System.out.println("CRASH");
+						System.out.println("CRASH Series");
 					}
 				}
 
@@ -173,9 +165,11 @@ public class DB {
 						insertNews.setString(6, n.getGeners().toString());
 						insertNews.setString(7, n.getBroadcaster());
 						insertNews.setInt(8, day);
+						insertNews.setInt(9, n.getManager().getId());
 						insertNews.executeUpdate(); 
 					}catch (Exception e) {
-						System.out.println("CRASH");
+						e.printStackTrace();
+						System.out.println("CRASH News");
 					}
 				}
 
@@ -191,9 +185,11 @@ public class DB {
 						insertTVShow.setString(7, tv.getGuest());
 						insertTVShow.setString(8, tv.getHost());
 						insertTVShow.setString(9, tv.getGeners().toString());
+						insertTVShow.setInt(10, tv.getManager().getId());
 						insertTVShow.executeUpdate(); 
 					}catch (Exception e) {
-						System.out.println("CRASH");
+						
+						System.out.println("CRASH TVShow");
 					}
 				}
 
@@ -253,8 +249,10 @@ public class DB {
 						,a
 						,Languages.valueOf(resultSetMovie.getString(9))
 						,Genres.valueOf(resultSetMovie.getString(10)));
-
-			} Program p =mo;
+				mo.setManager(Manager.getManagerById(resultSetMovie.getInt(11)));
+			}
+			
+			Program p =mo;
 			Manager m1 = p.getManager();
 			m1.addProgramByManger(p, SchSer);
 
@@ -270,7 +268,7 @@ public class DB {
 						,resultSetNews.getDouble(5)
 						,Genres.valueOf(resultSetNews.getString(6))
 						,resultSetNews.getString(7));
-
+				n.setManager(Manager.getManagerById(resultSetNews.getInt(8)));
 
 			} Program p2 =n;
 			Manager m2 = p2.getManager();
@@ -288,7 +286,7 @@ public class DB {
 						,resultSetSeries.getDouble(5)
 						,Genres.valueOf(resultSetSeries.getString(6))
 						);
-
+				s.setManager(Manager.getManagerById(resultSetSeries.getInt(7)));
 			} Program p3 =s;
 			Manager m3 = p3.getManager();
 			m3.addProgramByManger(p3, SchSer);
@@ -308,7 +306,7 @@ public class DB {
 						,resultSetTVShow.getString(8)
 						,Genres.valueOf(resultSetTVShow.getString(9))
 						);
-
+				tv.setManager(Manager.getManagerById(resultSetTVShow.getInt(10)));
 			} Program p4 =tv;
 			Manager m4 = p4.getManager();
 			m4.addProgramByManger(p4, SchSer);
