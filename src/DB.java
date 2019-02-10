@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class DB {
-	private static  Connection connection;
+	public static  Connection connection;
 	private static  Statement statement;
 	private static ResultSet resultSet;
 	private static PreparedStatement insertManager;
@@ -45,7 +45,7 @@ public class DB {
 	{
 
 		try {
-			
+
 			// delete all old DB.
 			delete = connection.prepareStatement("DELETE FROM Manager");
 			delete.execute();
@@ -88,7 +88,7 @@ public class DB {
 
 			try {
 				connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=HomeWork4DB;integratedSecurity=true;");
-				
+
 				insertMovie = connection.prepareStatement(
 						"INSERT INTO Movie " + 
 								"(id, name,duration,startHour,endHour,iMDB,dayScheduled,Languages,Genres,idManager) " + 
@@ -98,20 +98,20 @@ public class DB {
 						"INSERT INTO TVShow " + 
 								"(id, name,duration,startHour,endHour,dayScheduled,guest,host,Genres,idManager) " + 
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-				
-				insertSeries = connection.prepareStatement(
-						"INSERT INTO Series " + 
-								"(id, name,duration,startHour,endHour,Genres,dayScheduled,idManager) " + 
-						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-				
+
+
+
 				insertNews = connection.prepareStatement(
 						"INSERT INTO News " + 
 								"(id, name,duration,startHour,endHour,Genres,broadcaster,dayScheduled,idManager) " + 
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-				
+				insertSeries = connection.prepareStatement(
+						"INSERT INTO Series " + 
+								"(id, name,duration,startHour,endHour,Genres,dayScheduled,idManager) " + 
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-				
+
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -154,7 +154,7 @@ public class DB {
 						insertTVShow.setInt(10, tv.getManager().getId());
 						insertTVShow.executeUpdate(); 
 					}catch (Exception e) {
-						
+
 						System.out.println("CRASH TVShow");
 					}
 				}
@@ -195,12 +195,15 @@ public class DB {
 					}
 				}
 
-			
+
 
 			}
 		}
 
 	}
+	
+	
+	
 
 	public static Schedule readRecords()
 	{
@@ -231,11 +234,13 @@ public class DB {
 					connection.prepareStatement("SELECT * FROM TVShow");
 			resultSetTVShow = selectTVShow.executeQuery(); 
 			//readManager from db
-			Manager m = null;
+			
 			while (resultSetManager.next())
 			{
-				m =new Manager(resultSetManager.getInt(1),resultSetManager.getString(2));
-			} BCM.managers.add(m);
+				
+				Manager m =new Manager(resultSetManager.getInt(1),resultSetManager.getString(2));
+				BCM.managers.add(m);
+			} 
 
 			//read movie from db
 			Movie mo = null;
@@ -254,12 +259,12 @@ public class DB {
 						,Languages.valueOf(resultSetMovie.getString(9))
 						,Genres.valueOf(resultSetMovie.getString(10)));
 				mo.setManager(getManagerById(resultSetMovie.getInt(11)));
-			}
-			
-			Program p =mo;
-			Manager m1 = p.getManager();
-			m1.addProgramByManger(p, SchSer);
 
+
+				Program p =mo;
+				Manager m1 = p.getManager();
+				m1.addProgramByManger(p, SchSer);
+			}
 			//read News from db
 			News n = null;
 			while (resultSetNews.next())
@@ -274,28 +279,31 @@ public class DB {
 						,resultSetNews.getString(7));
 				n.setManager(getManagerById(resultSetNews.getInt(9)));
 
-			}
-			Program p2 =n;
-			Manager m2 = p2.getManager();
-			m2.addProgramByManger(p2, SchSer);	
 
+				Program p2 =n;
+				Manager m2 = p2.getManager();
+				m2.addProgramByManger(p2, SchSer);	
+			}
 			//read Series from db
 			Series s = null;
 			while (resultSetSeries.next())
 			{
-
+				ArrayList<Integer>arrday = new ArrayList<>();
+				arrday.add(resultSetSeries.getInt(7));
 				s =new Series(resultSetSeries.getInt(1)
 						,resultSetSeries.getString(2)
 						,resultSetSeries.getInt(3)
 						,resultSetSeries.getDouble(4)
 						,resultSetSeries.getDouble(5)
 						,Genres.valueOf(resultSetSeries.getString(6))
+						,arrday
 						);
 				s.setManager(getManagerById(resultSetSeries.getInt(8)));
-			} Program p3 =s;
-			Manager m3 = p3.getManager();
-			m3.addProgramByManger(p3, SchSer);
 
+				Program p3 =s;
+				Manager m3 = p3.getManager();
+				m3.addProgramByManger(p3, SchSer);
+			}
 			//read TVShow from db
 			TVShow tv = null;
 			while (resultSetTVShow.next())
@@ -312,10 +320,10 @@ public class DB {
 						,Genres.valueOf(resultSetTVShow.getString(9))
 						);
 				tv.setManager(getManagerById(resultSetTVShow.getInt(10)));
-			} Program p4 =tv;
+			 Program p4 =tv;
 			Manager m4 = p4.getManager();
 			m4.addProgramByManger(p4, SchSer);
-
+			}
 		}
 
 		catch (EOFException endOfFileException)
@@ -346,13 +354,13 @@ public class DB {
 		}
 
 	}
-	
+
 	public static Manager getManagerById(int id) {
 		for (Manager m : BCM.managers) {
 			if(m.getId()==id) {
 				return m;
 			}
-			
+
 		}
 		return null;
 	}

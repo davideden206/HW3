@@ -2,7 +2,8 @@ package src;
 
 
 import java.awt.EventQueue;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
@@ -18,7 +19,7 @@ public class BCM  {
 	public ArrayList<Program> programs;
 	public static Schedule sch = new Schedule();
 	public static Schedule newsch = new Schedule();
-
+	private static PreparedStatement selectManager;
 	public static void main(String[] args) throws Exception {
 
 		/*
@@ -37,13 +38,18 @@ public class BCM  {
 
 		// open and lobe ser file
 		
-				OpenSer.openFile();
+				//OpenSer.openFile();
 				
-				sch = OpenSer.readRecords();
-				OpenSer.closeFile();
+				//sch = OpenSer.readRecords();
+				//OpenSer.closeFile();
+				//System.out.println(sch);
+		
+				DB.openDB();
 				
-				saveSchedule();
 				sch = DB.readRecords();
+				DB.closeDB();
+				saveSchedule();
+				
 				
 				
 				
@@ -81,7 +87,7 @@ public class BCM  {
 			DB.openDB();
 			DB.addRecordsDB(sch);
 			//DB.readRecords();
-			//DB.closeDB();
+			DB.closeDB();
 			//FileOut.closeFileSer();
 			}
 			
