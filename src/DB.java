@@ -349,6 +349,7 @@ public class DB {
 	public static void closeDB(){
 		try {
 			connection.close();
+			System.out.println("DB close");
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
