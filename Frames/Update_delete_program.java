@@ -177,6 +177,7 @@ public class Update_delete_program extends JFrame {
 				//yes=0  no=1=(else)
 				if(n==0) {
 				BCM.sch.deleteProgram(id);
+				BCM.saveSchedule();
 				ap.setVisible(true);
 				Update_delete_program u = new Update_delete_program();
 				u.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

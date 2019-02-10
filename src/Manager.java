@@ -51,7 +51,7 @@ public class Manager implements Serializable{
 
 		}catch (Exception e) {
 			System.err.println(e.getMessage()+"The programs collide");
-			throw new Exception();
+			//throw new Exception();
 		}
 	}
 

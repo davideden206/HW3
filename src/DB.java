@@ -87,7 +87,7 @@ public class DB {
 
 
 			try {
-				connection = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=HomeWork4DB;integratedSecurity=true;");
+				
 
 				insertMovie = connection.prepareStatement(
 						"INSERT INTO Movie " + 

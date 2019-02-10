@@ -19,7 +19,6 @@ public class BCM  {
 	public ArrayList<Program> programs;
 	public static Schedule sch = new Schedule();
 	public static Schedule newsch = new Schedule();
-	private static PreparedStatement selectManager;
 	public static void main(String[] args) throws Exception {
 
 		/*
@@ -36,24 +35,15 @@ public class BCM  {
  			id=ADMIN , name =ADMIN
 		 */
 
-		// open and lobe ser file
+		// open and lobe DB
 		
-				//OpenSer.openFile();
 				
-				//sch = OpenSer.readRecords();
-				//OpenSer.closeFile();
-				//System.out.println(sch);
 		
 				DB.openDB();
-				
 				sch = DB.readRecords();
 				DB.closeDB();
 				saveSchedule();
 				
-				
-				
-				
-				System.out.println(managers);
 				
 				
 
@@ -81,14 +71,9 @@ public class BCM  {
 			 * save the Schedole in Ser file
 			 */
 			public static void saveSchedule() {
-			//FileOut.openFileSer();
-			
-			//FileOut.addRecordsSer(sch.ScheduletoArry());
 			DB.openDB();
 			DB.addRecordsDB(sch);
-			//DB.readRecords();
 			DB.closeDB();
-			//FileOut.closeFileSer();
 			}
 			
 		}

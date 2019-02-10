@@ -191,7 +191,7 @@ public class AddPogramsFrame extends JFrame {
 		scrollPane.setBounds(89, 253, 100, 142);
 		contentPane.add(scrollPane);
 		
-		 starsList = new JList(DayOfWeek.values());
+		 starsList = new JList(DaysOfTheWeek.values());
 		scrollPane.setViewportView(starsList);
 		starsList.setMaximumSize(getSize());
 		starsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -483,7 +483,7 @@ public class AddPogramsFrame extends JFrame {
 			int[] selected = starsList.getSelectedIndices();
 			
 			for(int i:selected) {
-				daySchasuledList.add(i);
+				daySchasuledList.add(i+1);
 			}
 			
 			
@@ -538,11 +538,11 @@ public class AddPogramsFrame extends JFrame {
 		String endHour = programEndHour.getText();
 		String pgenres  =comboBox4.getSelectedItem().toString();
 		if(String.valueOf(pid).matches("[0-9]+")&&
-				pname.matches("[a-zA-z]+")&&
+				pname.matches(".+")&&
 				String.valueOf(duration).matches("[1-9]+")&&
 				String.valueOf(startHour).matches("(\\d+\\.\\d+)")&&
 				String.valueOf(endHour).matches("(\\d+\\.\\d+)")&&
-				pgenres.matches("[a-zA-z]+")	
+				pgenres.matches("[A-Z][a-zA-Z]+")	
 					) {
 			return true;
 		}
