@@ -159,22 +159,7 @@ public class DB {
 					}
 				}
 
-				if(p instanceof Series) {
-					Series s = (Series)p;
-					try {
-						insertSeries.setInt(1, s.getId());
-						insertSeries.setString(2, s.getName());
-						insertSeries.setInt(3, s.getDuration());
-						insertSeries.setDouble(4, s.getStartHour());
-						insertSeries.setDouble(5, s.getEndHour());
-						insertSeries.setString(6, s.getGeners().toString());
-						insertSeries.setInt(7, day);
-						insertSeries.setInt(8, s.getManager().getId());
-						insertSeries.executeUpdate(); 
-					}catch (Exception e) {
-						System.out.println("CRASH Series");
-					}
-				}
+				
 
 				if(p instanceof News) {
 					News n = (News)p;
@@ -192,6 +177,23 @@ public class DB {
 					}catch (Exception e) {
 						e.printStackTrace();
 						System.out.println("CRASH News");
+					}
+				}
+				
+				if(p instanceof Series && !(p instanceof News)) {
+					Series s = (Series)p;
+					try {
+						insertSeries.setInt(1, s.getId());
+						insertSeries.setString(2, s.getName());
+						insertSeries.setInt(3, s.getDuration());
+						insertSeries.setDouble(4, s.getStartHour());
+						insertSeries.setDouble(5, s.getEndHour());
+						insertSeries.setString(6, s.getGeners().toString());
+						insertSeries.setInt(7, day);
+						insertSeries.setInt(8, s.getManager().getId());
+						insertSeries.executeUpdate(); 
+					}catch (Exception e) {
+						System.out.println("CRASH Series");
 					}
 				}
 
